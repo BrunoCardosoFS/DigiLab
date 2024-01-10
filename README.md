@@ -13,7 +13,7 @@ Para abrir o programa, primeiro instale todas as dependencias, você pode instal
     pip install -r requirements.txt
     ~~~
 
-* Com o terminal aberto na pasta do projeto inicie o arquivo main.py
+* Com o terminal aberto na pasta do projeto, inicie o arquivo main.py
 
     ~~~
     python main.py

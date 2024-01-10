@@ -110,7 +110,7 @@ class LeftMenu(QtWidgets.QGroupBox):
 
         self.settings.setValue("darkMode", self.varDarkMode)
         self.buttonDarkMode.setText("Modo claro" if self.varDarkMode else "Modo escuro")
-        logoBottomImage = QtGui.QPixmap(":/images/icons/icon_dark.svg" if self.varDarkMode else ":/images/icons/icon_light.svg").scaled(80, 80)
+        logoBottomImage = QtGui.QPixmap(":/images/icons/icon_dark.svg" if self.varDarkMode else ":/images/icons/icon_light.svg").scaled(90, 90)
         self.logoBottom.setPixmap(logoBottomImage)
 
         mainWindow.setDarkMode()

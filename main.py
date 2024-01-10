@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon
 current_path = sys.argv[0].replace("main.py", "")
 
 from config import Config
-from widgets.interface import LeftMenu
+from widgets.leftMenu import LeftMenu
 from styles.style import globalStyle
 import resources.resources
 

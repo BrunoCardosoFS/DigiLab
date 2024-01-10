@@ -7,6 +7,7 @@ current_path = sys.argv[0].replace("main.py", "")
 from config import Config
 from widgets.interface import LeftMenu
 from styles.style import globalStyle
+import resources.resources
 
 class WindowSimulator(QtWidgets.QMainWindow):
     def __init__(self):
@@ -16,7 +17,7 @@ class WindowSimulator(QtWidgets.QMainWindow):
         self.setWindowTitle("Simulador Circuitos Digitais")
         self.setMinimumWidth(800)
         self.setMinimumHeight(500)
-        self.setWindowIcon(QIcon(current_path + "images/icons/icon.ico"))
+        self.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
         # Definindo as configurações
         self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")

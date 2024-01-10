@@ -2,6 +2,8 @@ import sys
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtGui import QIcon
 
+import resources.resources
+
 current_path = sys.argv[0].replace("main.py", "")
 
 class Config(QtWidgets.QMainWindow):
@@ -11,7 +13,7 @@ class Config(QtWidgets.QMainWindow):
         self.setWindowTitle("Configurações")
         self.setMinimumWidth(500)
         self.setMinimumHeight(300)
-        self.setWindowIcon(QIcon(current_path + "images/icons/icon.ico"))
+        self.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
         container = QtWidgets.QWidget()
         container.setObjectName("teste")

@@ -1,5 +1,6 @@
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore, QtGui
 from config import Config
+import resources.resources
 
 class LeftMenu(QtWidgets.QGroupBox):
     def __init__(self, mainWindow):
@@ -29,29 +30,39 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.combo_box.addItem("Semáforo")
         self.combo_box.addItem("Esteira")
 
+        # Criando os controles da simulação
         self.controlSimulation = QtWidgets.QGroupBox()
         self.controlSimulation.setObjectName("ControlSimulator")
         self.layoutControlSimulation = QtWidgets.QHBoxLayout(self.controlSimulation)
-        self.layoutControlSimulation.setContentsMargins(35,0,35,0)
+        self.layoutControlSimulation.setContentsMargins(30,0,30,0)
         self.layoutControlSimulation.setSpacing(5)
 
-        self.buttonPlay = QtWidgets.QPushButton("Play")
-        self.buttonStop = QtWidgets.QPushButton("Stop")
+        self.buttonOpen = QtWidgets.QPushButton()
+        self.buttonPlay = QtWidgets.QPushButton()
+        self.buttonStop = QtWidgets.QPushButton()
 
-        self.buttonPlay.setFixedWidth(40)
+        self.buttonOpen.setIcon(QtGui.QIcon(":/images/icons/open.svg"))
+        self.buttonPlay.setIcon(QtGui.QIcon(":/images/icons/play.svg"))
+        self.buttonStop.setIcon(QtGui.QIcon(":/images/icons/stop.svg"))
+
+        self.buttonOpen.setFixedWidth(30)
+        self.buttonOpen.setFixedHeight(30)
+
+        self.buttonPlay.setFixedWidth(30)
         self.buttonPlay.setFixedHeight(30)
 
-        self.buttonStop.setFixedWidth(40)
+        self.buttonStop.setFixedWidth(30)
         self.buttonStop.setFixedHeight(30)
 
-
+        self.layoutControlSimulation.addWidget(self.buttonOpen)
         self.layoutControlSimulation.addWidget(self.buttonPlay)
         self.layoutControlSimulation.addWidget(self.buttonStop)
 
         self.txtConfigs = QtWidgets.QLabel("Configurações", alignment=QtCore.Qt.AlignCenter)
         self.buttonDarkMode = QtWidgets.QPushButton("Modo claro" if (self.settings.value("darkMode", type=bool)) else "Modo escuro")
         self.buttonOpenConfig = QtWidgets.QPushButton("Configurações")
-        self.spacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.spacer = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.bottomSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.copyright = QtWidgets.QLabel("Criado por Bruno Cardoso", alignment=QtCore.Qt.AlignCenter)
 
         # Adicionando elementos ao layout principal
@@ -59,11 +70,12 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.layout.addWidget(self.combo_box)
         self.layout.addWidget(self.controlSimulation)
 
+        self.layout.addItem(self.spacer)
         self.layout.addWidget(self.txtConfigs)
         self.layout.addWidget(self.buttonDarkMode)
         self.layout.addWidget(self.buttonOpenConfig)
 
-        self.layout.addItem(self.spacer)
+        self.layout.addItem(self.bottomSpacer)
         # self.layout.addWidget(self.copyright)
 
         self.setLayout(self.layout)

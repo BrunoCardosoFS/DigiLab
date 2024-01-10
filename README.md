@@ -1,5 +1,6 @@
 # Simulador Circuitos Digitais
-### Versão do Python: 3.12.1
+### Versão do Interpretador Python: 3.12.1
+* Baixe essa versão do Python [aqui](https://www.python.org/downloads/release/python-3121/)
 
 ### Dependências
 * PySide6 - 6.6.1

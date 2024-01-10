@@ -21,20 +21,15 @@ def globalStyle():
             border-radius: 7px;
         }}
 
+        QPushButton:hover{{
+            background: {variables["color2"]};
+        }}
+
         QComboBox{{
-            background: {variables["color1"]};
+            background: {variables["theme1"]};
             border: none;
             padding: 7px;
             border-radius: 7px;
-        }}
-
-        QComboBox:editable {{
-            background: black;
-        }}
-
-        QComboBox:on {{ /* shift the text when the popup opens */
-            padding-top: 3px;
-            padding-left: 4px;
         }}
 
         QComboBox::drop-down {{
@@ -49,21 +44,27 @@ def globalStyle():
             border-bottom-right-radius: 3px;
         }}
 
-        QComboBox QAbstractItemView {{
+        QComboBox:item {{
+            height: 30px;
             padding: 0;
             border: none;
-            background-color: {variables["color1"]}; 
+            background: {variables["theme1"]}; 
             color: {variables["txt"]};
         }}
 
-        QComboBox QAbstractItemView:item:hover {{
-            background-color: {variables["color2"]};
+        QComboBox:item:hover {{
+            background: {variables["theme2"]};
             border:none;
             padding: 5px;
         }}
 
-        QPushButton:hover{{
-            background: {variables["color2"]};
+        QComboBox:item:selected{{
+            border: none;
+            background: {variables["theme2"]};
+        }}
+
+        QComboBox:item:checked{{
+            font-weight: bold;
         }}
 
         QGroupBox#LeftMenu{{

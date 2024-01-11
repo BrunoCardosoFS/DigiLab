@@ -3,7 +3,7 @@ from config import Config
 import resources.resources
 
 class LeftMenu(QtWidgets.QGroupBox):
-    def __init__(self, mainWindow):
+    def __init__(self, parent: None):
         super().__init__()
 
         # Parametros do widget
@@ -91,7 +91,7 @@ class LeftMenu(QtWidgets.QGroupBox):
 
         # Chamadas das funções
         self.combo_box.currentIndexChanged.connect(self.election_changed)
-        self.buttonDarkMode.clicked.connect(lambda: self.setDarkMode(mainWindow))
+        self.buttonDarkMode.clicked.connect(lambda: self.setDarkMode(parent))
         self.buttonOpenConfig.clicked.connect(self.openConfig)
 
     @QtCore.Slot()

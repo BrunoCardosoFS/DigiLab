@@ -5,9 +5,25 @@ from PySide6.QtGui import QIcon
 current_path = sys.argv[0].replace("main.py", "")
 
 from widgets.leftMenu import LeftMenu
+from widgets.simulation import Simulation
 from styles.style import globalStyle
 import resources.resources
 
+# Criando a area da simulação
+class AreaSimulation(QtWidgets.QGroupBox):
+    def __init__(self, parent: None):
+        super().__init__()
+
+        print(parent)
+
+        self.layoutAreaSimulation = QtWidgets.QHBoxLayout(self)
+        self.layoutAreaSimulation.setContentsMargins(10,10,10,10)
+
+        self.simulation = Simulation(self)
+        self.layoutAreaSimulation.addWidget(self.simulation)
+
+
+# Criando a janela principal
 class WindowSimulator(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -35,13 +51,12 @@ class WindowSimulator(QtWidgets.QMainWindow):
         self.leftMenu = LeftMenu(self)
         self.leftMenu.setObjectName("LeftMenu")
 
-        self.areaSimulator = QtWidgets.QGroupBox()
-        self.areaSimulator.setObjectName("AreaSimulator")
-        self.layoutAreaSimulator = QtWidgets.QHBoxLayout(self.areaSimulator)
+        self.areaSimulation = AreaSimulation(self)
+        self.areaSimulation.setObjectName("AreaSimulator")
 
         # Adicionando os widgets o layout principal
         self.layout.addWidget(self.leftMenu)
-        self.layout.addWidget(self.areaSimulator)
+        self.layout.addWidget(self.areaSimulation)
 
         # Definindo os estilos
         self.container.setStyleSheet(globalStyle()) 

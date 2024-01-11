@@ -5,6 +5,40 @@ from styles.variables import lightMode, darkMode
 
 def globalStyle():
     variables = darkMode if (settings.value("darkMode", type=bool)) else lightMode
+
+    scrollAreaStyle = f"""
+        QScrollArea {{
+            border: none;
+            border-radius: 0px;
+            background-color: transparent;
+        }}
+
+        QScrollBar:vertical {{
+            width: 12px;
+            background-color: {variables["bg2"]};
+        }}
+
+        QScrollBar:horizontal {{
+            height: 12px;
+            background-color: {variables["bg2"]};
+        }}
+
+        QScrollBar::handle:vertical, QScrollBar::handle:horizontal {{
+            background: {variables["theme2"]};
+            border: none;
+            border-radius: 6px;
+        }}
+
+        QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
+            background: {variables["bg2"]};
+        }}
+        
+        QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {{
+            background: {variables["bg2"]};
+        }}
+    """
+
+
     style = f"""
         QWidget{{
             color: {variables["txt"]};
@@ -90,6 +124,8 @@ def globalStyle():
             border-radius: 10px;
             margin: 20px;
         }}
+
+        {scrollAreaStyle}
     """
 
     return style

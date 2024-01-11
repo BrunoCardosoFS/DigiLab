@@ -5,12 +5,9 @@ class Simulation(QtWidgets.QGroupBox):
         super().__init__()
 
         self.setStyleSheet("QGroupBox{background:red;}")
-    
-        # self.setMinimumWidth()
-        self.setMinimumHeight(460)
 
-        self.setFixedWidth(300)
-        self.setFixedHeight(440)
+        self.setFixedWidth(640)
+        self.setFixedHeight(540)
 
         #Definindo a size policy
         self.policy = self.sizePolicy()

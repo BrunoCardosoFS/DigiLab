@@ -13,14 +13,16 @@ import resources.resources
 class AreaSimulation(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
-
-        print(parent)
-
         self.layoutAreaSimulation = QtWidgets.QHBoxLayout(self)
         self.layoutAreaSimulation.setContentsMargins(10,10,10,10)
 
+        self.scrollArea = QtWidgets.QScrollArea(self)
+
         self.simulation = Simulation(self)
-        self.layoutAreaSimulation.addWidget(self.simulation)
+
+        self.scrollArea.setWidget(self.simulation)
+
+        self.layoutAreaSimulation.addWidget(self.scrollArea)
 
 
 # Criando a janela principal

@@ -84,7 +84,7 @@ def globalStyle():
             border: none;
         }}
 
-        QGroupBox#AreaSimulator{{
+        QGroupBox#AreaSimulation{{
             background: {variables["bg2"]};
             border: none;
             border-radius: 10px;

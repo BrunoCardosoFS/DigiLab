@@ -52,7 +52,7 @@ class WindowSimulator(QtWidgets.QMainWindow):
         self.leftMenu.setObjectName("LeftMenu")
 
         self.areaSimulation = AreaSimulation(self)
-        self.areaSimulation.setObjectName("AreaSimulator")
+        self.areaSimulation.setObjectName("AreaSimulation")
 
         # Adicionando os widgets o layout principal
         self.layout.addWidget(self.leftMenu)

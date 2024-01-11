@@ -4,7 +4,6 @@ from PySide6.QtGui import QIcon
 
 current_path = sys.argv[0].replace("main.py", "")
 
-from config import Config
 from widgets.leftMenu import LeftMenu
 from styles.style import globalStyle
 import resources.resources
@@ -38,8 +37,7 @@ class WindowSimulator(QtWidgets.QMainWindow):
 
         self.areaSimulator = QtWidgets.QGroupBox()
         self.areaSimulator.setObjectName("AreaSimulator")
-        self.layoutAreaSimulator = QtWidgets.QVBoxLayout(self.areaSimulator)
-
+        self.layoutAreaSimulator = QtWidgets.QHBoxLayout(self.areaSimulator)
 
         # Adicionando os widgets o layout principal
         self.layout.addWidget(self.leftMenu)

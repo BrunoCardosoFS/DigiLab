@@ -9,6 +9,11 @@ class LeftMenu(QtWidgets.QGroupBox):
         # Parametros do widget
         self.setFixedWidth(200)
 
+        #Definindo a size policy
+        policy = self.sizePolicy()
+        policy.setVerticalPolicy(QtWidgets.QSizePolicy.Expanding)
+        self.setSizePolicy(policy)
+
         #Criando o layout principal do widget
         self.layout = QtWidgets.QVBoxLayout(self)
 
@@ -18,11 +23,6 @@ class LeftMenu(QtWidgets.QGroupBox):
 
         # Parametros do layout
         self.layout.setContentsMargins(10,10,10,25)
-
-        #Definindo a size policy
-        policy = self.sizePolicy()
-        policy.setVerticalPolicy(QtWidgets.QSizePolicy.Expanding)
-        self.setSizePolicy(policy)
 
         # Definindo o logoBottomImage
         logoBottomImage = QtGui.QPixmap(":/images/icons/icon_dark.svg" if getDarkMode else ":/images/icons/icon_light.svg").scaled(90, 90)

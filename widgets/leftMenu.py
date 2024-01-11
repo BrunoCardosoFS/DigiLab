@@ -5,6 +5,7 @@ import resources.resources
 class LeftMenu(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
+        self.isDarkMode = parent.isDarkMode
 
         # Parametros do widget
         self.setFixedWidth(200)
@@ -19,7 +20,7 @@ class LeftMenu(QtWidgets.QGroupBox):
 
         #Definindo as configurações
         self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-        getDarkMode = self.settings.value("darkMode", type=bool)
+        getDarkMode = self.settings.value("darkMode", defaultValue=self.isDarkMode, type=bool)
 
         # Parametros do layout
         self.layout.setContentsMargins(10,10,10,25)

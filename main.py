@@ -1,5 +1,5 @@
 import sys
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets, QtGui
 from PySide6.QtGui import QIcon
 
 current_path = sys.argv[0].replace("main.py", "")
@@ -27,18 +27,15 @@ class AreaSimulation(QtWidgets.QGroupBox):
 
 # Criando a janela principal
 class WindowSimulator(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, isDarkMode: type=bool):
         super().__init__()
+        self.isDarkMode = isDarkMode
         
         # Definindo os parametros da janela
         self.setWindowTitle("Simulador Circuitos Digitais")
         self.setMinimumWidth(800)
         self.setMinimumHeight(500)
         self.setWindowIcon(QIcon(":/images/icons/icon.ico"))
-
-        # Definindo as configurações
-        self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-        self.settings.setValue("darkMode", self.settings.value("darkMode", defaultValue=True, type=bool))
 
         # Criando o Widget principal da janela
         self.container = QtWidgets.QWidget()
@@ -61,7 +58,7 @@ class WindowSimulator(QtWidgets.QMainWindow):
         self.layout.addWidget(self.areaSimulation)
 
         # Definindo os estilos
-        self.container.setStyleSheet(globalStyle()) 
+        self.container.setStyleSheet(globalStyle(self)) 
 
         # Adicionando container como widget principal
         self.setCentralWidget(self.container)
@@ -74,14 +71,20 @@ class WindowSimulator(QtWidgets.QMainWindow):
         sys.exit(app.exec())
 
     def setDarkMode(self):
-        self.container.setStyleSheet(globalStyle())
+        self.container.setStyleSheet(globalStyle(self))
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     app.setStyle("Fusion")
 
+    # Obtém a cor da janela
+    cor_janela = app.palette().color(QtGui.QPalette.Window)
+
+    # Verifica o modo de aparência com base na luminosidade da cor da janela
+    isDarkMode = False if cor_janela.lightnessF() > 0.5 else True
+
     # Instanciando a janela principal
-    widget = WindowSimulator()
+    widget = WindowSimulator(isDarkMode)
     # Definindo o tamanho inicial da janela
     widget.resize(800, 500)
     # Mostrando a janela principal

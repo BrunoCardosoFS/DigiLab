@@ -15,8 +15,6 @@ class Simulation(QtWidgets.QGroupBox):
         self.policy.setVerticalPolicy(QtWidgets.QSizePolicy.Minimum)
         self.setSizePolicy(self.policy)
 
-        print(parent)
-
         self.button1 = QtWidgets.QPushButton("Botão 1", self)
         self.button1.setGeometry(50, 50, 100, 30)  # Define a geometria do botão 1
 

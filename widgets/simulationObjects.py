@@ -8,9 +8,6 @@ class Tanque(QtWidgets.QGroupBox):
         #Criando o layout principal do widget
         self.layout = QtWidgets.QVBoxLayout(self)
 
-        #Definindo as configurações
-        self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-
         # Parametros do layout
         self.layout.setContentsMargins(10,10,10,25)
 

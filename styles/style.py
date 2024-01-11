@@ -3,8 +3,8 @@ from PySide6 import QtCore
 settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
 from styles.variables import lightMode, darkMode
 
-def globalStyle():
-    variables = darkMode if (settings.value("darkMode", type=bool)) else lightMode
+def globalStyle(parent: None):
+    variables = darkMode if (settings.value("darkMode",defaultValue=parent.isDarkMode, type=bool)) else lightMode
 
     scrollAreaStyle = f"""
         QScrollArea {{

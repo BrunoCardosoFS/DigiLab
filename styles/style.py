@@ -14,27 +14,29 @@ def globalStyle(parent: None):
         }}
 
         QScrollBar:vertical {{
-            width: 12px;
-            background-color: {variables["bg2"]};
+            width: 10px;
+            background-color: transparent;
         }}
 
         QScrollBar:horizontal {{
-            height: 12px;
-            background-color: {variables["bg2"]};
+            height: 10px;
+            background-color: transparent;
         }}
 
         QScrollBar::handle:vertical, QScrollBar::handle:horizontal {{
             background: {variables["theme2"]};
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
         }}
 
         QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
-            background: {variables["bg2"]};
+            background: transparent;
+            border:none;
         }}
         
         QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {{
-            background: {variables["bg2"]};
+            background: transparent;
+            border:none;
         }}
     """
 

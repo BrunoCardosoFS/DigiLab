@@ -4,7 +4,7 @@ class Simulation(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
 
-        self.setStyleSheet("QGroupBox{background:red;}")
+        self.setStyleSheet("QGroupBox{background: transparent; border: none;}")
 
         self.setFixedWidth(640)
         self.setFixedHeight(540)

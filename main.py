@@ -14,7 +14,7 @@ class AreaSimulation(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
         self.layoutAreaSimulation = QtWidgets.QHBoxLayout(self)
-        self.layoutAreaSimulation.setContentsMargins(10,10,10,10)
+        self.layoutAreaSimulation.setContentsMargins(10,10,2,2)
 
         self.scrollArea = QtWidgets.QScrollArea(self)
 
@@ -78,10 +78,10 @@ if __name__ == "__main__":
     app.setStyle("Fusion")
 
     # Obtém a cor da janela
-    cor_janela = app.palette().color(QtGui.QPalette.Window)
+    corJanela = app.palette().color(QtGui.QPalette.Window)
 
     # Verifica o modo de aparência com base na luminosidade da cor da janela
-    isDarkMode = False if cor_janela.lightnessF() > 0.5 else True
+    isDarkMode = False if corJanela.lightnessF() > 0.5 else True
 
     # Instanciando a janela principal
     widget = WindowSimulator(isDarkMode)

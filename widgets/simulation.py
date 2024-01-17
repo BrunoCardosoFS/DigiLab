@@ -4,7 +4,8 @@ class Simulation(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
 
-        self.setStyleSheet("QGroupBox{background: transparent; border: none;}")
+        # self.setStyleSheet("QGroupBox{background: red; border: none;}")
+        self.setStyleSheet("QGroupBox{background: transparent;}")
 
         self.setFixedWidth(640)
         self.setFixedHeight(540)
@@ -14,6 +15,8 @@ class Simulation(QtWidgets.QGroupBox):
         self.policy.setHorizontalPolicy(QtWidgets.QSizePolicy.Minimum)
         self.policy.setVerticalPolicy(QtWidgets.QSizePolicy.Minimum)
         self.setSizePolicy(self.policy)
+
+        self.layout = QtWidgets.QGridLayout(self)
 
         self.button1 = QtWidgets.QPushButton("Botão 1", self)
         self.button1.setGeometry(50, 50, 100, 30)  # Define a geometria do botão 1

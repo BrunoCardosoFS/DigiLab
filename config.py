@@ -4,11 +4,15 @@ from PySide6.QtGui import QIcon
 
 import resources.resources
 
+from styles.style import globalStyle
+
 current_path = sys.argv[0].replace("main.py", "")
 
 class Config(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, parent: None):
         super().__init__()
+
+        self.isDarkMode = parent.isDarkMode
         
         self.setWindowTitle("Configurações")
         self.setMinimumWidth(500)
@@ -25,12 +29,9 @@ class Config(QtWidgets.QMainWindow):
         
         self.buttonClose.setStyleSheet("background: red;color:#fff;border-radius:5px;border:none;padding:5px")
 
-        container.setStyleSheet("""QWidget#teste{background: #0d0d0d;padding:5px;}
-                                QWidget{color:#fff;}
-                                QPushButton{background:#171717; padding:3px; border-radius:5px;}
-                                QPushButton:hover{background:#1c1c1c;}
-                                QLineEdit{background:#171717; color: #fff; padding:3px; border-radius:5px; border: 0.5px solid #1f1f1f;}
-                                """)
+        container.setStyleSheet(globalStyle(self))
+        
+        container.setObjectName("centralwidget")
         
         self.button.setCursor(QtCore.Qt.PointingHandCursor)
         self.buttonClose.setCursor(QtCore.Qt.PointingHandCursor)

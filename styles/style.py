@@ -9,8 +9,8 @@ def globalStyle(parent: None):
     scrollAreaStyle = f"""
         QScrollArea {{
             border: none;
-            border-radius: 0px;
-            background-color: transparent;
+            border-radius: 10px;
+            background-color: {variables["bg2"]};
         }}
 
         QScrollBar:vertical {{
@@ -23,18 +23,13 @@ def globalStyle(parent: None):
             background-color: transparent;
         }}
 
-        QScrollBar::handle:vertical, QScrollBar::handle:horizontal {{
+        QScrollBar::handle {{
             background: {variables["theme2"]};
             border: none;
             border-radius: 5px;
         }}
 
-        QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
-            background: transparent;
-            border:none;
-        }}
-        
-        QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {{
+        QScrollBar::add-line, QScrollBar::sub-line, QScrollBar::add-page, QScrollBar::sub-page {{
             background: transparent;
             border:none;
         }}
@@ -59,6 +54,13 @@ def globalStyle(parent: None):
 
         QPushButton:hover{{
             background: {variables["color2"]};
+        }}
+
+        QLineEdit{{
+            background: {variables["color1"]};
+            border: none;
+            padding: 7px;
+            border-radius: 7px;
         }}
 
         QComboBox{{
@@ -108,7 +110,7 @@ def globalStyle(parent: None):
             border: none;
         }}
 
-        QGroupBox#LeftMenu QPushButton{{
+        QGroupBox#LeftMenu QPushButton, QGroupBox#LeftMenu QLineEdit{{
             background: {variables["theme1"]};
         }}
 

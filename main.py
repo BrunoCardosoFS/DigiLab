@@ -32,12 +32,20 @@ class AreaSimulation(QtWidgets.QGraphicsView):
     def wheelEvent(self, event):
         if event.modifiers() & QtCore.Qt.ControlModifier:
             # Aumentar ou diminuir o zoom com base na roda do mouse
+            atualScale = round(self.transform().m11(), 1)
+
             factor = 1.2  # Fator de escala para zoom
 
             if (event.angleDelta().y() < 0):
-                factor = 1.0 / factor  # Zoom out
-            
+                    factor = 1.0 / factor  # Zoom out
+
+            if ((atualScale == 0.5) and (event.angleDelta().y() < 0)):
+                factor = 1.0  # Zoom out
+            elif ((atualScale == 4.3) and (event.angleDelta().y() > 0)):
+                factor = 1.0
+
             self.scale(factor, factor)
+
         else:
             # Chamar a implementação padrão para outros casos
             super().wheelEvent(event)

@@ -7,10 +7,11 @@ def globalStyle(parent: None):
     variables = darkMode if (settings.value("darkMode",defaultValue=parent.isDarkMode, type=bool)) else lightMode
 
     scrollAreaStyle = f"""
-        QScrollArea {{
+        QGraphicsView {{
             border: none;
             border-radius: 10px;
             background-color: {variables["bg2"]};
+            margin: 20px;
         }}
 
         QScrollBar:vertical {{

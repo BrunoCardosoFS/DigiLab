@@ -5,25 +5,42 @@ from PySide6.QtGui import QIcon
 current_path = sys.argv[0].replace("main.py", "")
 
 from widgets.leftMenu import LeftMenu
-from widgets.simulation import Simulation
+from widgets.simulation import Simulation, SimulationScene
 from styles.style import globalStyle
 import resources.resources
 
 # Criando a area da simulação
-class AreaSimulation(QtWidgets.QGroupBox):
+class AreaSimulation(QtWidgets.QGraphicsView):
     def __init__(self, parent: None):
         super().__init__()
-        self.layout = QtWidgets.QHBoxLayout(self)
-        self.layout.setContentsMargins(10,10,2,2)
+        self.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        self.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
 
-        self.scrollArea = QtWidgets.QScrollArea(self)
+        self.policy = self.sizePolicy()
+        self.policy.setVerticalPolicy(QtWidgets.QSizePolicy.Expanding)
+        self.policy.setHorizontalPolicy(QtWidgets.QSizePolicy.Expanding)
+        self.setSizePolicy(self.policy)
 
-        self.simulation = Simulation(self)
+        self.simulation = SimulationScene(self)
         self.simulation.setObjectName("Simulation")
 
-        self.scrollArea.setWidget(self.simulation)
+        self.setScene(self.simulation)
 
-        self.layout.addWidget(self.scrollArea)
+        self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
+        self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)  # Ativar a capacidade de arrastar a visualização
+
+    def wheelEvent(self, event):
+        if event.modifiers() & QtCore.Qt.ControlModifier:
+            # Aumentar ou diminuir o zoom com base na roda do mouse
+            factor = 1.2  # Fator de escala para zoom
+
+            if (event.angleDelta().y() < 0):
+                factor = 1.0 / factor  # Zoom out
+            
+            self.scale(factor, factor)
+        else:
+            # Chamar a implementação padrão para outros casos
+            super().wheelEvent(event)
 
 
 # Criando a janela principal

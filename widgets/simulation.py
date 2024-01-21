@@ -1,4 +1,5 @@
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtWidgets
+from PySide6.QtCore import Qt
 
 class Simulation(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
@@ -23,3 +24,16 @@ class Simulation(QtWidgets.QGroupBox):
 
         self.button2 = QtWidgets.QPushButton("Botão 2", self)
         self.button2.setGeometry(150, 100, 100, 30)  # Define a geometria do botão 2
+
+class SimulationScene(QtWidgets.QGraphicsScene):
+    def __init__(self, parent: None):
+        super().__init__()
+
+        self.item = QtWidgets.QGraphicsRectItem(0, 0, 100, 100)
+        self.item1 = QtWidgets.QGraphicsEllipseItem(90, 50, 100, 100)
+        self.item.setBrush(Qt.blue)
+        self.item1.setBrush(Qt.red)
+
+        self.addItem(self.item)
+        self.addItem(self.item1)
+        

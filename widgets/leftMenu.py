@@ -1,12 +1,25 @@
-from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6 import QtWidgets, QtCore, QtGui, QtSerialPort
 from config import Config
 import resources.resources
+
+def listCOM():
+    ports = QtSerialPort.QSerialPortInfo.availablePorts()
+    listPorts = []
+    if ports:
+        for port in ports:
+            listPorts.append({"name": port.portName(), "description": port.description()})
+    else:
+        listPorts = None
+
+    return listPorts
 
 class LeftMenu(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
         super().__init__()
         self.isDarkMode = parent.isDarkMode
         self.parent = parent
+        self.listPorts = listCOM()
+
 
         # Parametros do widget
         self.setFixedWidth(220)
@@ -19,7 +32,7 @@ class LeftMenu(QtWidgets.QGroupBox):
         #Criando o layout principal do widget
         self.layout = QtWidgets.QVBoxLayout(self)
 
-        #Definindo as configurações
+        #Definindo QSettings
         self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
         getDarkMode = self.settings.value("darkMode", defaultValue=self.isDarkMode, type=bool)
 
@@ -29,28 +42,33 @@ class LeftMenu(QtWidgets.QGroupBox):
         # Definindo o logoBottomImage
         logoBottomImage = QtGui.QPixmap(":/images/icons/icon_dark.svg" if getDarkMode else ":/images/icons/icon_light.svg").scaled(90, 90)
 
-        # Criando os widgets filhos
+        # Widgets da area de controle da simulação
         self.txtSimulation = QtWidgets.QLabel("Simulação", alignment=QtCore.Qt.AlignCenter)
-
-        self.logoBottom = QtWidgets.QLabel("Teste", alignment=QtCore.Qt.AlignCenter)
+        self.logoBottom = QtWidgets.QLabel(alignment=QtCore.Qt.AlignCenter)
         self.logoBottom.setPixmap(logoBottomImage)
 
+        # Seleção de experimento
         self.selectSimulation = QtWidgets.QComboBox()
         self.selectSimulation.setPlaceholderText("Selecionar experimento")
         self.selectSimulation.addItem("Tanque")
         self.selectSimulation.addItem("Semáforo")
         self.selectSimulation.addItem("Esteira")
 
+        # Seleção da porta Serial
         self.selectDevice = QtWidgets.QComboBox()
         self.selectDevice.setPlaceholderText("Selecionar dispositivo")
-        self.selectDevice.addItem("COM1 - USB Serial")
-        self.selectDevice.addItem("COM2 - Bluetooth Serial")
-        self.selectDevice.addItem("COM3")
+        
+        if (self.listPorts != None):
+            for self.port in self.listPorts:
+                self.selectDevice.addItem(f"{self.port["name"]} - {self.port["description"]}")
+        else:
+            self.selectDevice.setPlaceholderText("Nenhuma porta disponível")
 
+        # Input expressão lógica
         self.inputExpression = QtWidgets.QLineEdit()
         self.inputExpression.setPlaceholderText("Digite a expressão lógica")
 
-        # Criando os controles da simulação
+        # Controles da simulação
         self.controlSimulation = QtWidgets.QGroupBox()
         self.controlSimulation.setObjectName("ControlSimulator")
         self.layoutControlSimulation = QtWidgets.QHBoxLayout(self.controlSimulation)
@@ -58,19 +76,17 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.layoutControlSimulation.setSpacing(5)
 
         self.buttonOpen = QtWidgets.QPushButton()
-        self.buttonPlay = QtWidgets.QPushButton()
-        self.buttonStop = QtWidgets.QPushButton()
-
         self.buttonOpen.setIcon(QtGui.QIcon(":/images/icons/open.svg"))
-        self.buttonPlay.setIcon(QtGui.QIcon(":/images/icons/play.svg"))
-        self.buttonStop.setIcon(QtGui.QIcon(":/images/icons/stop.svg"))
-
         self.buttonOpen.setFixedWidth(30)
         self.buttonOpen.setFixedHeight(30)
 
+        self.buttonPlay = QtWidgets.QPushButton()
+        self.buttonPlay.setIcon(QtGui.QIcon(":/images/icons/play.svg"))
         self.buttonPlay.setFixedWidth(30)
         self.buttonPlay.setFixedHeight(30)
 
+        self.buttonStop = QtWidgets.QPushButton()
+        self.buttonStop.setIcon(QtGui.QIcon(":/images/icons/stop.svg"))
         self.buttonStop.setFixedWidth(30)
         self.buttonStop.setFixedHeight(30)
 
@@ -78,6 +94,7 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.layoutControlSimulation.addWidget(self.buttonPlay)
         self.layoutControlSimulation.addWidget(self.buttonStop)
 
+        # Area das configurações
         self.txtConfigs = QtWidgets.QLabel("Configurações", alignment=QtCore.Qt.AlignCenter)
         self.buttonDarkMode = QtWidgets.QPushButton("Modo claro" if getDarkMode else "Modo escuro")
         self.buttonOpenConfig = QtWidgets.QPushButton("Configurações")
@@ -100,8 +117,6 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.layout.addItem(self.bottomSpacer)
         self.layout.addWidget(self.logoBottom)
         # self.layout.addWidget(self.copyright)
-
-        self.setLayout(self.layout)
 
         # Chamadas das funções
         self.selectSimulation.currentIndexChanged.connect(self.election_changed)

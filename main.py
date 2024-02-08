@@ -5,7 +5,7 @@ from PySide6.QtGui import QIcon
 current_path = sys.argv[0].replace("main.py", "")
 
 from widgets.leftMenu import LeftMenu
-from widgets.simulation import Simulation, SimulationScene
+from widgets.simulation import SimulationScene
 from styles.style import globalStyle
 import resources.resources
 
@@ -29,6 +29,8 @@ class AreaSimulation(QtWidgets.QGraphicsView):
         self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
         self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)  # Ativar a capacidade de arrastar a visualização
 
+
+    @QtCore.Slot()
     def wheelEvent(self, event):
         if event.modifiers() & QtCore.Qt.ControlModifier:
             # Aumentar ou diminuir o zoom com base na roda do mouse
@@ -48,6 +50,7 @@ class AreaSimulation(QtWidgets.QGraphicsView):
 
         else:
             # Chamar a implementação padrão para outros casos
+            self.simulation.animation()
             super().wheelEvent(event)
 
 

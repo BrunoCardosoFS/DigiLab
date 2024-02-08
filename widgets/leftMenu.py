@@ -123,6 +123,9 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.buttonDarkMode.clicked.connect(lambda: self.setDarkMode(parent))
         self.buttonOpenConfig.clicked.connect(self.openConfig)
 
+        self.buttonPlay.clicked.connect(lambda: self.startAnimation(parent))
+        self.buttonStop.clicked.connect(lambda: self.stopAnimation(parent))
+
     @QtCore.Slot()
     def election_changed(self, index):
         selected_item = self.selectSimulation.currentText()
@@ -143,3 +146,9 @@ class LeftMenu(QtWidgets.QGroupBox):
         self.logoBottom.setPixmap(logoBottomImage)
 
         mainWindow.setDarkMode()
+
+    def startAnimation(self, mainWindow):
+        mainWindow.areaSimulation.simulation.animation()
+
+    def stopAnimation(self, mainWindow):
+        mainWindow.areaSimulation.simulation.stopSimulation()

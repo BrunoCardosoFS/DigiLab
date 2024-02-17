@@ -6,6 +6,7 @@ current_path = sys.argv[0].replace("main.py", "")
 
 from widgets.leftMenu import LeftMenu
 from widgets.simulation import SimulationScene
+from widgets.truthTable import TruthTable
 from styles.style import globalStyle
 import resources.resources
 
@@ -26,8 +27,8 @@ class AreaSimulation(QtWidgets.QGraphicsView):
 
         self.setScene(self.simulation)
 
-        self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
-        self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)  # Ativar a capacidade de arrastar a visualização
+        # self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
+        # self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)  # Ativar a capacidade de arrastar a visualização
 
 
     @QtCore.Slot()
@@ -50,7 +51,6 @@ class AreaSimulation(QtWidgets.QGraphicsView):
 
         else:
             # Chamar a implementação padrão para outros casos
-            self.simulation.animation()
             super().wheelEvent(event)
 
 
@@ -82,9 +82,13 @@ class WindowSimulator(QtWidgets.QMainWindow):
         self.areaSimulation = AreaSimulation(self)
         self.areaSimulation.setObjectName("AreaSimulation")
 
+        self.truthTable = TruthTable(self)
+        self.truthTable.setObjectName("LeftMenu")
+
         # Adicionando os widgets o layout principal
         self.layout.addWidget(self.leftMenu)
         self.layout.addWidget(self.areaSimulation)
+        self.layout.addWidget(self.truthTable)
 
         # Definindo os estilos
         self.container.setStyleSheet(globalStyle(self)) 
@@ -104,7 +108,7 @@ class WindowSimulator(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-    app.setStyle("Fusion")
+    app.setStyle(QtWidgets.QStyleFactory.create("Fusion"))
 
     # Obtém a cor da janela
     corJanela = app.palette().color(QtGui.QPalette.Window)

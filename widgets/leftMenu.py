@@ -1,17 +1,8 @@
 from PySide6 import QtWidgets, QtCore, QtGui, QtSerialPort
 from config import Config
 import resources.resources
+from functions.serial import listCOM
 
-def listCOM():
-    ports = QtSerialPort.QSerialPortInfo.availablePorts()
-    listPorts = []
-    if ports:
-        for port in ports:
-            listPorts.append({"name": port.portName(), "description": port.description()})
-    else:
-        listPorts = None
-
-    return listPorts
 
 class LeftMenu(QtWidgets.QGroupBox):
     def __init__(self, parent: None):
@@ -148,7 +139,7 @@ class LeftMenu(QtWidgets.QGroupBox):
         mainWindow.setDarkMode()
 
     def startAnimation(self, mainWindow):
-        mainWindow.areaSimulation.simulation.animation()
+        mainWindow.areaSimulation.simulation.startSimulation()
 
     def stopAnimation(self, mainWindow):
         mainWindow.areaSimulation.simulation.stopSimulation()

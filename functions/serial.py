@@ -15,15 +15,3 @@ def listCOM():
         listPorts = None
 
     return listPorts
-
-class SerialManager(QtSerialPort.QSerialPort):
-    data_received = QtCore.Signal(str)
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.readyRead.connect(self.read_data)
-
-    @QtCore.Slot()
-    def read_data(self):
-        data = self.readAll().data().decode().strip()
-        self.data_received.emit(data)

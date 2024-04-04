@@ -1,8 +1,6 @@
 from PySide6 import QtWidgets, QtCore, QtSerialPort
 from widgets.simulationObjects import Valvula, Tanque
 
-from functions.serial import SerialManager
-
 class SimulationScene(QtWidgets.QGraphicsScene):
     def __init__(self, parent: None):
         super().__init__()
@@ -11,14 +9,14 @@ class SimulationScene(QtWidgets.QGraphicsScene):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.simulation)
 
-        self.serialManager = SerialManager()
+        self.serialManager = QtSerialPort.QSerialPort()
         self.serialManager.setPortName("COM3")
         self.serialManager.setBaudRate(QtSerialPort.QSerialPort.Baud115200)
-        self.serialManager.data_received.connect(self.updateData)
+        self.serialManager.readyRead.connect(self.updateData)
 
         self.connect()
 
-        self.valvulaIn = Valvula(self, -36.5, 5, True, 1)
+        self.valvulaIn = Valvula(self, -36.5, 5, False, 1)
         self.valvulaOut = Valvula(self, 202.8, 286.5, True, 2)
 
         self.tanque = Tanque(self, self.valvulaIn, self.valvulaOut, [{"y": 30}, {"y": 50}, {"y": 70}])
@@ -35,7 +33,7 @@ class SimulationScene(QtWidgets.QGraphicsScene):
         for sensor in self.sensors:
             self.dataSensors = self.dataSensors + str(int(sensor.isWater))
         
-        self.dataSensors = self.dataSensors + str(int(self.tanque.valveOut.isOpen)) + "00"
+        self.dataSensors = self.dataSensors + str(int(self.tanque.valveOut.isOpen))
 
         self.tanque.valveIn.controlOpenValv(int(self.serialReceived[0]))
 
@@ -44,9 +42,6 @@ class SimulationScene(QtWidgets.QGraphicsScene):
         self.dataToSend = QtCore.QByteArray(self.dataSensors.encode())
 
         self.serialManager.write(self.dataToSend)
-
-
-
 
         self.tanque.changeWater()
 
@@ -73,5 +68,6 @@ class SimulationScene(QtWidgets.QGraphicsScene):
         else:
             print("Não foi possível desconectar")
 
-    def updateData(self, data):
+    def updateData(self):
+        data = self.serialManager.readAll().data().decode().strip()
         self.serialReceived = list(data)

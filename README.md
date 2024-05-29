@@ -3,7 +3,7 @@
 * Baixe essa versão do Python [aqui](https://www.python.org/downloads/release/python-3121/)
 
 ### Dependências
-* PySide6 - 6.6.1
+* PySide6 - 6.7.1
 
 ### Usando o programa
 **Antes de começar a usar o programa lembre-se de que ele ainda está em desenvolvimento, logo, muitos recursos ainda não estão disponíveis pois ainda não foram desenvolvidos. Confira o estado atual de desenvolvimento [aqui](https://github.com/users/brunocardosofs/projects/4).**

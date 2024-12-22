@@ -9,7 +9,7 @@ compile_with_nuitka(
     product_name="Simulador Circuitos Digitais",
     output_filename="simulador",
     file_version="0.1.0",
-    file_description="Um simulador dos sistemas para implementação de circuitos digitais",
+    file_description="Simulador Circuitos Digitais",
     copyright="Copyright 2024 Bruno Cardoso",
     icon=icon,
     disable_console=True,

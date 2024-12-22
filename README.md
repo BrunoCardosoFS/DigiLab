@@ -3,7 +3,7 @@
 O **Simulador Circuitos Digitais** é uma ferramenta interativa para simular os sistemas físicos propostos em laboratórios de circuitos digitais. Este projeto está em estágio inicial de desenvolvimento, e alguns recursos ainda estão sendo implementados. Confira o progresso do projeto [aqui](https://github.com/users/brunocardosofs/projects/4).
 
 ## Requisitos
-- **Python:** 3.13.1 ou superior. Baixe a versão mais recente no [site do python](https://www.python.org/downloads/).
+- **Python:** 3.12.1 ou superior. Baixe a versão mais recente no [site do python](https://www.python.org/downloads/).
 
 ### Dependências
 - **Interface gráfica:** PySide6 (versão 6.8.1.1).

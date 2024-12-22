@@ -1,41 +1,48 @@
 # Simulador Circuitos Digitais
-### Versão do Interpretador Python: 3.13.1
-* Baixe essa versão do Python [aqui](https://www.python.org/downloads/release/python-3131/)
+
+O **Simulador Circuitos Digitais** é uma ferramenta interativa para simular os sistemas físicos propostos em laboratórios de circuitos digitais. Este projeto está em estágio inicial de desenvolvimento, e alguns recursos ainda estão sendo implementados. Confira o progresso do projeto [aqui](https://github.com/users/brunocardosofs/projects/4).
+
+## Requisitos
+- **Python:** 3.13.1 ou superior. Baixe a versão mais recente no [site do python](https://www.python.org/downloads/).
 
 ### Dependências
-* PySide6 - 6.8.1.1
+- **Interface gráfica:** PySide6 (versão 6.8.1.1).
 
-### Usando o programa
-**Antes de começar a usar o programa lembre-se de que ele ainda está em desenvolvimento, logo, muitos recursos ainda não estão disponíveis pois ainda não foram desenvolvidos. Confira o estado atual de desenvolvimento [aqui](https://github.com/users/brunocardosofs/projects/4).**
+## Usando o programa
 
-Para abrir o programa, primeiro instale todas as dependências, você pode instalar cada uma [manualmente](#dependências) ou usar o requirements.txt presente neste repositório.
-* O ideal é que seja utilizado um ambiente virtual do python (venv), leia sobre isso [aqui](https://docs.python.org/3/library/venv.html).
-* Após clonar este repositório, abra um terminal e navegue até a pasta do projeto
-* Use o PIP para instalar as dependências
+Siga estas etapas para rodar o programa:
 
-    ~~~
+1. **Configure um ambiente virtual (opcional, mas recomendado):** Leia como criar um ambiente virtual [aqui](https://docs.python.org/3/library/venv.html).
+
+2. **Instale as dependências:**
+
+    No terminal, navegue até a pasta do projeto e execute:  
+    ~~~bash
     pip install -r requirements.txt
-    ~~~
+     ~~~
 
-* Com o terminal aberto na pasta do projeto, inicie o arquivo main.py
-
+3. **Execute o programa:**
     ~~~
     python main.py
     ~~~
 
 ### Compilando com nuitka
-**Você pode gerar um executável do programa para utilizá-lo sem a necessidade de fazer isso a partir do python.**
+**O Nuitka é usado para criar um executável do programa, permitindo que ele seja executado sem a necessidade de Python instalado.**
 
-Para fazer isso, primeiro instale o nuitka, você pode usar o requirements-build.txt presente neste repositório.
-* Abra um terminal e navegue até a pasta do projeto
-* Use o PIP para instalar as dependências
+1. **Instale as dependências para a compilação:**
 
-    ~~~
+    No terminal, navegue até a pasta do projeto e execute:  
+    ~~~bash
     pip install -r requirements-build.txt
-    ~~~
+     ~~~
 
-* Com o terminal aberto na pasta do projeto, inicie o arquivo build.py
-
-    ~~~
+2. **Compile o executável:**
+ 
+    ~~~bash
     python build.py
+     ~~~
+
+3. **O executável estará disponível na pasta**
+    ~~~
+    <pasta-do-projeto>/.output/main.dist/
     ~~~

@@ -13,6 +13,6 @@ compile_with_nuitka(
     copyright="Copyright 2024 Bruno Cardoso",
     icon=icon,
     disable_console=True,
-    onefile=True,
+    onefile=False,
     other_options=["--mingw64", "--enable-plugin=pyside6"]
 )

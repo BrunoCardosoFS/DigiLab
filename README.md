@@ -26,7 +26,7 @@ Siga estas etapas para rodar o programa:
     python main.py
     ~~~
 
-### Compilando com nuitka
+## Compilando com nuitka
 **O Nuitka é usado para criar um executável do programa, permitindo que ele seja executado sem a necessidade de Python instalado.**
 
 1. **Instale as dependências para a compilação:**

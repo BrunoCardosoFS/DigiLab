@@ -4,8 +4,8 @@ lightMode = {
     "txt": "#000000",
 
     "theme1": "#D3DEF0",
-    "theme2": "#D3DEF0",
-    "theme3": "#ECF3FC",
+    "theme2": "#ECF3FC",
+    "theme3": "#deebfd",
     "theme4": "#deebfd",
 
     "color1": "#e0e7f2",

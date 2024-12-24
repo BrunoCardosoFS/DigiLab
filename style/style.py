@@ -43,6 +43,10 @@ def globalStyle(isDarkMode: bool):
             background-color: {variables['theme1']};
         }}
 
+        #LeftMenu{{
+            background-color: {variables['theme2']};
+        }}
+
         {scrollAreaStyle}
     """
 

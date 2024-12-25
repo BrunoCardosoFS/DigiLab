@@ -1,5 +1,4 @@
 from PySide6 import QtWidgets
-from PySide6.QtQuickWidgets import QQuickWidget
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtCore import Qt, Slot, QUrl
 
@@ -27,18 +26,6 @@ class AreaSimulation(QtWidgets.QWidget):
         self.scrollAreaWidget.setObjectName("SimulationScrollAreaWidget")
         self.layoutScrollAreaWidget = QtWidgets.QVBoxLayout(self.scrollAreaWidget)
         self.layoutScrollAreaWidget.setContentsMargins(3,3,3,3)
-
-        # self.quickWidget = QQuickWidget(parent=self)
-
-        # qmlfile = os.path.abspath("./projects/teste.qml")
-
-        # print(qmlfile)
-
-        # self.quickWidget.setSource(QUrl.fromLocalFile(qmlfile))
-        # self.quickWidget.setObjectName("SimulationQuickWidget")
-        # self.quickWidget.setResizeMode(QQuickWidget.SizeRootObjectToView)
-
-        # self.layoutScrollAreaWidget.addWidget(self.quickWidget)
 
         self.scrollArea.setWidget(self.scrollAreaWidget)
 

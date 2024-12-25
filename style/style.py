@@ -47,6 +47,13 @@ def globalStyle(isDarkMode: bool):
             background-color: {variables['theme2']};
         }}
 
+        #SimulationScrollArea, #SimulationScrollAreaWidget{{
+            background-color: {variables['theme2']};
+            border: none;
+            border-radius: 10px;
+        }}
+
+
         {scrollAreaStyle}
     """
 

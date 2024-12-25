@@ -1,20 +1,16 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-Rectangle {
-    width: 640
-    height: 300
-    color: "lightblue"
+ScrollView {
+    width: 500
+    height: 500
 
-    Text {
-        id: textElement
-        text: "Texto do QML"
-        anchors.centerIn: parent
-        font.pixelSize: 32
+    ListView {
+        model: 20
+        delegate: ItemDelegate {
+            text: "Item " + index
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: console.log("Button clicked!")
+            required property int index
         }
     }
 }

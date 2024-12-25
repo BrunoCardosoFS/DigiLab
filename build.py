@@ -16,3 +16,5 @@ compile_with_nuitka(
     onefile=False,
     other_options=["--mingw64", "--enable-plugin=pyside6"]
 )
+
+#--include-qt-plugins=qml

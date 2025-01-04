@@ -12,7 +12,7 @@ compile_with_nuitka(
     file_description="Simulador Circuitos Digitais",
     copyright="Copyright 2024 Bruno Cardoso",
     icon=icon,
-    disable_console=True,
+    windows_disable_console=True,
     onefile=False,
     other_options=["--mingw64", "--enable-plugin=pyside6"]
 )

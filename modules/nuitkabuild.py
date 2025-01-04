@@ -31,7 +31,7 @@ def compile_with_nuitka(
         standalone: bool = True,
         output_filename: str = "",
         output_dir: str = ".output",
-        disable_console: bool = False,
+        windows_disable_console: bool = False,
         onefile: bool = False,
         needs_admin: bool = False,
         other_options: list = [],
@@ -61,11 +61,9 @@ def compile_with_nuitka(
         nuitka_options.append(f'--output-filename={output_filename}')
 
 
-    if(disable_console):
+    if(windows_disable_console):
         if (system == "Windows"):
             nuitka_options.append('--windows-console-mode=disable')
-        elif (system == "Linux"):
-            nuitka_options.append('--no-console')
 
     if((icon != "") and (system == "Windows")):
         nuitka_options.append(f'--windows-icon-from-ico={icon}')

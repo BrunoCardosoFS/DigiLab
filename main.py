@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     windowColor = app.palette().color(QPalette.Window)
     isDarkMode = False if windowColor.lightnessF() > 0.5 else True
-
+    
     # Instantiating the main window
     window = MainWindow(isDarkMode=isDarkMode)
     # Setting the initial window size

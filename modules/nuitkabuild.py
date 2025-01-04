@@ -61,19 +61,18 @@ def compile_with_nuitka(
         nuitka_options.append(f'--output-filename={output_filename}')
 
 
-    if(windows_disable_console):
-        if (system == "Windows"):
-            nuitka_options.append('--windows-console-mode=disable')
+    if windows_disable_console and (system == "Windows"):
+        nuitka_options.append('--windows-console-mode=disable')
 
-    if((icon != "") and (system == "Windows")):
+    if icon and (system == "Windows"):
         nuitka_options.append(f'--windows-icon-from-ico={icon}')
 
     nuitka_options.append(f'--file-version={file_version}')
     nuitka_options.append(f'--product-name={product_name}')
 
-    if(file_description != ""):
+    if file_description:
         nuitka_options.append(f'--file-description={file_description}')
-    if(copyright != ""):
+    if copyright:
         nuitka_options.append(f'--copyright={copyright}')
     if(needs_admin):
         nuitka_options.append('--windows-uac-admin')

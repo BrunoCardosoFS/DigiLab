@@ -3,6 +3,8 @@ from PySide6.QtCore import Qt, Slot, QSettings
 from PySide6.QtGui import QIcon
 from style.style import globalStyle
 
+from modules.tempsettings import TempSettings
+
 from ui.widgets.leftmenu import LeftMenu
 from ui.widgets.simulation import AreaSimulation
 
@@ -30,11 +32,11 @@ class CentralWidget(QtWidgets.QWidget):
 
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, isDarkMode):
+    def __init__(self):
         super().__init__()
         self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
 
-        self.isDarkMode = True if (self.settings.value("darkMode",defaultValue=isDarkMode, type=bool)) else False
+        self.isDarkMode = True if (self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)) else False
 
         # Defining window parameters
         self.setWindowTitle("Simulador Circuitos Digitais")

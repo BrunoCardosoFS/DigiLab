@@ -1,6 +1,8 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Qt, Slot
 
+from modules.tempsettings import TempSettings
+
 class LeftMenu(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget):
         super().__init__()
@@ -14,8 +16,11 @@ class LeftMenu(QtWidgets.QWidget):
         # Layout
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(15, 10, 15, 10)
-
         self.setLayout(self.Layout)
+
+        #QSettings
+        self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
+        getDarkMode = self.settings.value("darkMode", type=bool)
 
         # Spacers
         self.spacer1 = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)

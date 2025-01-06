@@ -6,8 +6,10 @@ lightMode = {
     "txt": "#000000",
 
     "color1": "#EDF3FD",
-    "color2": "#CFCFCF",
-    "color3": "#CFCFCF"
+    "color2": "#e3e9f2",
+    "color3": "#CFCFCF",
+
+    "img-down-arrow": ":/images/light/down-arrow.svg"
 }
 
 darkMode = {
@@ -19,5 +21,7 @@ darkMode = {
 
     "color1": "#252526",
     "color2": "#2D2D2D",
-    "color3": "#3C3C3C"
+    "color3": "#3C3C3C",
+
+    "img-down-arrow": ":/images/dark/down-arrow.svg"
 }

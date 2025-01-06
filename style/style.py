@@ -116,6 +116,10 @@ def globalStyle(isDarkMode: bool):
             background-color: {variables['bg2']};
         }}
 
+        #LeftMenu #FooterBar{{
+            border-top: 1px solid {variables['bg3']};
+        }}
+
         #SimulationScrollArea, #SimulationScrollAreaWidget{{
             background-color: {variables['bg3']};
             border: none;

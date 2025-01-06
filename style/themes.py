@@ -13,9 +13,9 @@ lightMode = {
 }
 
 darkMode = {
-    "bg1": "#1E1E1E",
-    "bg2": "#252526",
-    "bg3": "#252526",
+    "bg1": "#252526",
+    "bg2": "#1E1E1E",
+    "bg3": "#1E1E1E",
 
     "txt": "#ffffff",
 

@@ -1,27 +1,21 @@
 lightMode = {
     "bg1": "#F0F0F0",
-    "bg2": "#FFFFFF",
+    "bg2": "#D3DEF0",
+    "bg3": "#FFFFFF",
+
     "txt": "#000000",
 
-    "theme1": "#D3DEF0",
-    "theme2": "#ECF3FC",
-    "theme3": "#deebfd",
-    "theme4": "#deebfd",
-
-    "color1": "#e0e7f2",
+    "color1": "#EDF3FD",
     "color2": "#CFCFCF",
     "color3": "#CFCFCF"
 }
 
 darkMode = {
-    "bg1": "#252526",
-    "bg2": "#1E1E1E",
-    "txt": "#ffffff",
+    "bg1": "#1E1E1E",
+    "bg2": "#252526",
+    "bg3": "#252526",
 
-    "theme1": "#181818",
-    "theme2": "#1E1E1E",
-    "theme3": "#262626",
-    "theme4": "#3C3C3C",
+    "txt": "#ffffff",
 
     "color1": "#252526",
     "color2": "#2D2D2D",

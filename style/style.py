@@ -1,4 +1,4 @@
-from style.colors import lightMode, darkMode
+from style.themes import lightMode, darkMode
 
 def globalStyle(isDarkMode: bool):
     variables = darkMode if (isDarkMode) else lightMode
@@ -45,6 +45,10 @@ def globalStyle(isDarkMode: bool):
             border-radius: 5px;
         }}
 
+        QPushButton:hover, QComboBox:hover{{
+            background-color: {variables["color2"]};
+        }}
+
         QComboBox{{
             background: {variables["color1"]};
             border: none;
@@ -62,6 +66,12 @@ def globalStyle(isDarkMode: bool):
             border-left-style: solid; /* just a single line */
             border-top-right-radius: 3px; /* same radius as the QComboBox */
             border-bottom-right-radius: 3px;
+        }}
+
+        QComboBox::down-arrow {{
+            image: url({variables["img-down-arrow"]}); /* Substitua pelo caminho do ícone */
+            width: 20px; /* Largura da seta */
+            height: 20px; /* Altura da seta */
         }}
 
         QComboBox:item {{

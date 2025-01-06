@@ -18,21 +18,24 @@ class LeftMenu(QtWidgets.QWidget):
         self.setLayout(self.Layout)
 
         # Spacers
-        self.spacerExpanding = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.spacer = QtWidgets.QSpacerItem(10, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.spacer1 = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.spacer2 = QtWidgets.QSpacerItem(10, 30, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
 
         # Title
         self.SimulationTitle = QtWidgets.QLabel(text="Simulação", parent=self, alignment=QtCore.Qt.AlignCenter)
 
         # Experiment selection
         self.selectSimulation = QtWidgets.QComboBox(self)
+        self.selectSimulation.setCursor(QtCore.Qt.PointingHandCursor)
         self.selectSimulation.setPlaceholderText("Selecionar experimento")
+        
         self.selectSimulation.addItem("Tanque")
         self.selectSimulation.addItem("Semáforo")
         self.selectSimulation.addItem("Esteira")
 
         # Device selection
         self.selectDevice = QtWidgets.QComboBox(self)
+        self.selectDevice.setCursor(QtCore.Qt.PointingHandCursor)
         self.selectDevice.setPlaceholderText("Selecionar dispositivo")
 
         # Simulation controls
@@ -43,9 +46,11 @@ class LeftMenu(QtWidgets.QWidget):
         self.SimulationControlsLayout.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
 
         self.btnPlay = QtWidgets.QPushButton(parent=self.SimulationControls, icon=QtGui.QIcon(":/images/icons/play.svg"), text="")
+        self.btnPlay.setCursor(QtCore.Qt.PointingHandCursor)
         self.btnPlay.setFixedSize(30, 30)
 
         self.btnStop = QtWidgets.QPushButton(parent=self.SimulationControls, icon=QtGui.QIcon(":/images/icons/stop.svg"), text="")
+        self.btnStop.setCursor(QtCore.Qt.PointingHandCursor)
         self.btnStop.setFixedSize(30, 30)
 
         self.SimulationControlsLayout.addWidget(self.btnPlay)
@@ -57,5 +62,5 @@ class LeftMenu(QtWidgets.QWidget):
         self.Layout.addWidget(self.selectSimulation)
         self.Layout.addWidget(self.selectDevice)
         self.Layout.addWidget(self.SimulationControls)
-        self.Layout.addItem(self.spacerExpanding)
+        self.Layout.addItem(self.spacer1)
         

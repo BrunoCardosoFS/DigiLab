@@ -56,6 +56,15 @@ def globalStyle(isDarkMode: bool):
             border-radius: 7px;
         }}
 
+        QComboBox QAbstractItemView {{
+            border: none;
+            outline: none;
+            background-color: {variables["color1"]};
+            selection-background-color: {variables["color2"]};
+            padding: 0px;
+            margin: 0px;
+        }}
+        
         QComboBox::drop-down {{
             subcontrol-origin: padding;
             subcontrol-position: top right;
@@ -74,7 +83,7 @@ def globalStyle(isDarkMode: bool):
             height: 20px; /* Altura da seta */
         }}
 
-        QComboBox:item {{
+        QComboBox:item, QComboBox QAbstractItemView:item {{
             height: 30px;
             padding: 0;
             border: none;
@@ -82,18 +91,20 @@ def globalStyle(isDarkMode: bool):
             color: {variables["txt"]};
         }}
 
-        QComboBox:item:hover {{
+        QComboBox:item:hover, QComboBox QAbstractItemView:item:hover {{
             background: {variables["color2"]};
             border:none;
             padding: 5px;
         }}
 
-        QComboBox:item:selected{{
+        QComboBox:item:selected, QComboBox QAbstractItemView:item:selected {{
             border: none;
+            border-left:1px solid blue;
             background: {variables["color2"]};
+            font-weight: bold;
         }}
 
-        QComboBox:item:checked{{
+        QComboBox:item:checked, QComboBox QAbstractItemView:item:checked {{
             font-weight: bold;
         }}
 

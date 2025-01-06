@@ -1,12 +1,11 @@
 from PySide6 import QtWidgets
 from PySide6 import QtCore
-from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtCore import Qt, Slot, QUrl
+from PySide6.QtCore import Qt
 
 import os
 
 class Simulation(QtWidgets.QWidget):
-    testeSignal = QtCore.Signal(dict)
+    # testeSignal = QtCore.Signal(dict)
 
     def __init__(self, parent: QtWidgets.QWidget):
         super().__init__(parent)
@@ -50,14 +49,15 @@ class AreaSimulation(QtWidgets.QWidget):
 
         self.scrollArea.setWidget(self.scrollAreaWidget)
 
-        self.spacer = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.spacerTop = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.spacerBottom = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
 
-        self.layoutScrollAreaWidget.addItem(self.spacer)
+        self.layoutScrollAreaWidget.addItem(self.spacerTop)
 
         self.simulation = Simulation(self.scrollAreaWidget)
         self.layoutScrollAreaWidget.addWidget(self.simulation)
 
-        self.layoutScrollAreaWidget.addItem(self.spacer)
+        self.layoutScrollAreaWidget.addItem(self.spacerBottom)
 
         self.Layout.addWidget(self.scrollArea)
         

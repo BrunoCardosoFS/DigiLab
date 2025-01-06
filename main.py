@@ -21,7 +21,7 @@ from ui.mainwindow import MainWindow
 
 if __name__ == "__main__":
     app = QApplication([])
-    app.setStyle(QStyleFactory.create("Fusion"))
+    # app.setStyle(QStyleFactory.create("Fusion"))
     app.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
     windowColor = app.palette().color(QPalette.Window)

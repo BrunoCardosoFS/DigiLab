@@ -9,5 +9,11 @@
     
     <file>light/down-arrow.svg</file>
     <file>dark/down-arrow.svg</file>
+
+    <file>light/settings.svg</file>
+    <file>dark/settings.svg</file>
+
+    <file>light/moon.svg</file>
+    <file>dark/sun.svg</file>
   </qresource>
 </RCC>

@@ -35,8 +35,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-
-        self.isDarkMode = True if (self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)) else False
+        self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
         # Defining window parameters
         self.setWindowTitle("Simulador Circuitos Digitais")

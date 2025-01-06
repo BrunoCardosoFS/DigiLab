@@ -108,7 +108,7 @@ def globalStyle(isDarkMode: bool):
             font-weight: bold;
         }}
 
-        #CentralWidget{{
+        #CentralWidget, QMainWindow{{
             background-color: {variables['bg1']};
         }}
 

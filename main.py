@@ -17,6 +17,8 @@ import sys
 from PySide6.QtWidgets import QApplication, QStyleFactory
 from PySide6.QtGui import QIcon, QPalette
 
+from modules.tempsettings import TempSettings
+
 from ui.mainwindow import MainWindow
 
 if __name__ == "__main__":
@@ -26,9 +28,11 @@ if __name__ == "__main__":
 
     windowColor = app.palette().color(QPalette.Window)
     isDarkMode = False if windowColor.lightnessF() > 0.5 else True
+
+    TempSettings.set("isDarkModeSystem", isDarkMode)
     
     # Instantiating the main window
-    window = MainWindow(isDarkMode=isDarkMode)
+    window = MainWindow()
     # Setting the initial window size
     window.resize(800, 500)
     # Showing the main window

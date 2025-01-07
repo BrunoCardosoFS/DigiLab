@@ -52,8 +52,11 @@ def globalStyle(isDarkMode: bool):
         QComboBox{{
             background: {variables["color1"]};
             border: none;
-            padding: 7px;
-            border-radius: 7px;
+            border-radius: 5px;
+        }}
+
+        QComboBox:!enabled{{
+            color: #858585;
         }}
 
         QComboBox QAbstractItemView {{
@@ -116,8 +119,12 @@ def globalStyle(isDarkMode: bool):
             background-color: {variables['bg2']};
         }}
 
+        #LeftMenu #SimulationControls{{
+            margin-top: 5px;
+        }}
+
         #LeftMenu #FooterBar{{
-            border-top: 1px solid {variables['bg3']};
+            border-top: 2px solid {variables['color1']};
         }}
 
         #SimulationScrollArea, #SimulationScrollAreaWidget{{

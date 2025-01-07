@@ -14,6 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
+import os
 from PySide6.QtWidgets import QApplication, QStyleFactory
 from PySide6.QtGui import QIcon, QPalette
 
@@ -30,6 +31,8 @@ if __name__ == "__main__":
     isDarkMode = False if windowColor.lightnessF() > 0.5 else True
 
     TempSettings.set("isDarkModeSystem", isDarkMode)
+    
+    TempSettings.set("path", os.path.dirname(sys.argv[0]))
     
     # Instantiating the main window
     window = MainWindow()

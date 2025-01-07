@@ -18,6 +18,11 @@ class CentralWidget(QtWidgets.QWidget):
         self.setObjectName("CentralWidget")
         self.setAttribute(Qt.WA_StyledBackground, True)
 
+        self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
+        self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
+
+        self.setStyleSheet(globalStyle(self.isDarkMode))
+
         self.Layout = QtWidgets.QHBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
         self.Layout.setSpacing(0)
@@ -25,17 +30,23 @@ class CentralWidget(QtWidgets.QWidget):
         self.setLayout(self.Layout)
 
         self.LeftMenu = LeftMenu(self)
+        self.LeftMenu.toggleDarkMode.connect(self.toggleTheme)
+
         self.AreaSimulation = AreaSimulation(self)
 
         self.Layout.addWidget(self.LeftMenu)
         self.Layout.addWidget(self.AreaSimulation)
 
+    @Slot()
+
+    def toggleTheme(self, isDarkMode):
+        self.isDarkMode = isDarkMode
+        self.setStyleSheet(globalStyle(isDarkMode))
+
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-        self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
         # Defining window parameters
         self.setWindowTitle("Simulador Circuitos Digitais")
@@ -43,10 +54,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setMinimumHeight(500)
         self.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
-        self.setStyleSheet(globalStyle(self.isDarkMode))
-
         self.central = CentralWidget(self)
-
         self.setCentralWidget(self.central)
 
     @Slot()

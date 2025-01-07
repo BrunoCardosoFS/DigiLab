@@ -10,10 +10,13 @@
     <file>light/down-arrow.svg</file>
     <file>dark/down-arrow.svg</file>
 
+    <file>light/update.svg</file>
+    <file>dark/update.svg</file>
+
+    <file>light/theme.svg</file>
+    <file>dark/theme.svg</file>
+
     <file>light/settings.svg</file>
     <file>dark/settings.svg</file>
-
-    <file>light/moon.svg</file>
-    <file>dark/sun.svg</file>
   </qresource>
 </RCC>

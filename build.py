@@ -14,7 +14,9 @@ compile_with_nuitka(
     icon=icon,
     windows_disable_console=True,
     onefile=False,
-    other_options=["--mingw64", "--enable-plugin=pyside6"]
+    other_options=["--msvc=latest", "--enable-plugin=pyside6"]
 )
 
-#--include-qt-plugins=qml
+# --mingw64
+# --enable-plugin=pyside6
+# --include-qt-plugins=qml

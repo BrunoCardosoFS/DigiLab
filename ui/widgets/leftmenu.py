@@ -3,6 +3,8 @@ from PySide6.QtCore import Qt, Slot, Signal
 
 from modules.tempsettings import TempSettings
 
+from modules.backend.serial import listPorts
+
 import resources.resources
 
 class LeftMenu(QtWidgets.QWidget):
@@ -66,11 +68,15 @@ class LeftMenu(QtWidgets.QWidget):
         self.selectDevice.setDisabled(True)
         self.selectDevice.setFixedHeight(32)
 
+        self.updateDevices(True)
+
         btnUpdateDevicesIcon = QtGui.QIcon(":/images/dark/update.svg" if isDarkMode else ":/images/light/update.svg")
         self.btnUpdateDevices = QtWidgets.QPushButton(parent=self.frameDevice, icon=btnUpdateDevicesIcon, text="")
         self.btnUpdateDevices.setIconSize(QtCore.QSize(18, 18))
         self.btnUpdateDevices.setFixedSize(32, 32)
         self.btnUpdateDevices.setCursor(QtCore.Qt.PointingHandCursor)
+
+        self.btnUpdateDevices.clicked.connect(self.updateDevices)
 
         self.frameDeviceLayout.addWidget(self.selectDevice)
         self.frameDeviceLayout.addWidget(self.btnUpdateDevices)
@@ -142,6 +148,26 @@ class LeftMenu(QtWidgets.QWidget):
         self.Layout.addWidget(self.footerBar)
 
     @Slot()
+
+    def updateDevices(self, ignoreDialogs):
+        self.selectDevice.clear()
+        
+        devices = listPorts()
+        if devices:
+            self.selectDevice.setDisabled(False)
+            self.selectDevice.setPlaceholderText("Selecionar dispositivo")
+            for device in devices:
+                self.selectDevice.addItem(f"{device[0]} - {device[1]}")
+                
+        elif not ignoreDialogs:
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setWindowTitle("Nenhum dispositivo encontrado")
+            messageBox.setIcon(QtWidgets.QMessageBox.Warning)
+            messageBox.setText("Nenhum dispositivo foi encontrado.")
+            messageBox.setInformativeText("Conecte um dispositivo e tente novamente.")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+
+            messageBox.exec()
 
     def updateDarkMode(self):
         isDarkMode = not self.settings.value("darkMode", defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)

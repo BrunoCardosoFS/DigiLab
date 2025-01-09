@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets
 from PySide6.QtCore import Qt, Slot, QSettings
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QCloseEvent
 from PySide6.QtSerialPort import QSerialPort
 
 from style.style import globalStyle
@@ -45,6 +45,8 @@ class CentralWidget(QtWidgets.QWidget):
         # Serial Manager
         self.serialPort = QSerialPort(parent=self)
 
+        self.serialPort.readyRead.connect(self.readSerial)
+
     @Slot(bool)
     def toggleTheme(self, isDarkMode:bool):
         self.isDarkMode = isDarkMode
@@ -52,6 +54,9 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot(int)
     def connectSerial(self, index:int):
+        if self.serialPort.isOpen():
+            self.serialPort.close()
+            
         if index >= 0:
             port = TempSettings.get("devices")[index][0]
 
@@ -96,6 +101,16 @@ class CentralWidget(QtWidgets.QWidget):
 
             messageBox.exec()
 
+    @Slot()
+    def readSerial(self):
+        try:
+            data = self.serialPort.readAll().data().decode().strip()
+        except UnicodeDecodeError:
+            data = ""
+
+        data = list(data)
+
+        self.AreaSimulation.receiveData(data)
 
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):
@@ -111,7 +126,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.central = CentralWidget(self)
         self.setCentralWidget(self.central)
 
-    @Slot()
-    def closeEvent(self, event):
+    @Slot(QCloseEvent)
+    def closeEvent(self, event:QCloseEvent):
         QtWidgets.QApplication.quit()
         super().closeEvent(event)

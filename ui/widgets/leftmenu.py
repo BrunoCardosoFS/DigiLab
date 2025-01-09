@@ -9,6 +9,7 @@ import resources.resources
 
 class LeftMenu(QtWidgets.QWidget):
     toggleDarkMode = Signal(bool)
+    closeSerial = Signal()
 
     def __init__(self, parent: QtWidgets.QWidget):
         super().__init__()
@@ -67,6 +68,8 @@ class LeftMenu(QtWidgets.QWidget):
         self.selectDevice.setPlaceholderText("Nenhum disp. encontrado")
         self.selectDevice.setDisabled(True)
         self.selectDevice.setFixedHeight(32)
+
+        # self.selectDevice.currentIndexChanged.connect(self.changeDevice)
 
         self.updateDevices(True)
 
@@ -147,18 +150,21 @@ class LeftMenu(QtWidgets.QWidget):
         self.Layout.addItem(self.spacer2)
         self.Layout.addWidget(self.footerBar)
 
-    @Slot()
+    @Slot(bool)
+    def updateDevices(self, ignoreDialogs:bool = False):
+        self.closeSerial.emit()
 
-    def updateDevices(self, ignoreDialogs):
-        self.selectDevice.clear()
-        
         devices = listPorts()
+        self.selectDevice.clear()
+
+        TempSettings.set("devices", devices)
+    
         if devices:
             self.selectDevice.setDisabled(False)
             self.selectDevice.setPlaceholderText("Selecionar dispositivo")
             for device in devices:
                 self.selectDevice.addItem(f"{device[0]} - {device[1]}")
-                
+
         elif not ignoreDialogs:
             messageBox = QtWidgets.QMessageBox()
             messageBox.setWindowTitle("Nenhum dispositivo encontrado")
@@ -169,6 +175,7 @@ class LeftMenu(QtWidgets.QWidget):
 
             messageBox.exec()
 
+    @Slot()
     def updateDarkMode(self):
         isDarkMode = not self.settings.value("darkMode", defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
@@ -187,5 +194,3 @@ class LeftMenu(QtWidgets.QWidget):
         self.btnDarkMode.setIcon(QtGui.QIcon(f":/images/{theme}/theme.svg"))
         self.btnSettings.setIcon(QtGui.QIcon(f":/images/{theme}/settings.svg"))
         self.logoBottom.setPixmap(QtGui.QPixmap(f":/images/icons/icon_{theme}.svg").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-
-        

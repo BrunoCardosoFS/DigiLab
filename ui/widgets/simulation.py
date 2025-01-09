@@ -2,26 +2,7 @@ from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Slot
 from PySide6.QtCore import Qt
 
-import os
-
-class Simulation(QtWidgets.QWidget):
-    # testeSignal = QtCore.Signal(dict)
-
-    def __init__(self, parent: QtWidgets.QWidget):
-        super().__init__(parent)
-
-        self.setMinimumWidth(50)
-        self.setMinimumHeight(50)
-        self.setAttribute(Qt.WA_StyledBackground, True)
-        self.setStyleSheet("background-color: #f00;")
-        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-
-        self.Layout = QtWidgets.QVBoxLayout(self)
-    
-    @Slot(dict)
-    def testeSlot(self, lista: dict):
-        print(lista)
-
+from projects.tanque import Projeto
 
 class AreaSimulation(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget):
@@ -45,18 +26,17 @@ class AreaSimulation(QtWidgets.QWidget):
         self.scrollAreaWidget.setObjectName("SimulationScrollAreaWidget")
         self.layoutScrollAreaWidget = QtWidgets.QVBoxLayout(self.scrollAreaWidget)
         self.layoutScrollAreaWidget.setContentsMargins(3,3,3,3)
+        self.layoutScrollAreaWidget.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter)
 
         self.scrollArea.setWidget(self.scrollAreaWidget)
-
-        self.spacerTop = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.spacerBottom = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-
-        self.layoutScrollAreaWidget.addItem(self.spacerTop)
-
-        self.simulation = Simulation(self.scrollAreaWidget)
-        self.layoutScrollAreaWidget.addWidget(self.simulation)
-
-        self.layoutScrollAreaWidget.addItem(self.spacerBottom)
-
+        
         self.Layout.addWidget(self.scrollArea)
+
+        # Add tanque
+        tanque = Projeto()
+        self.layoutScrollAreaWidget.addWidget(tanque)
+
+    @Slot(list)
+    def receiveData(self, data: list):
+        print(data)
         

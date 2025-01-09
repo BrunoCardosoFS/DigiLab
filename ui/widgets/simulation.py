@@ -1,5 +1,5 @@
-from PySide6 import QtWidgets
-from PySide6 import QtCore
+from PySide6 import QtWidgets, QtCore
+from PySide6.QtCore import Slot
 from PySide6.QtCore import Qt
 
 import os
@@ -18,8 +18,7 @@ class Simulation(QtWidgets.QWidget):
 
         self.Layout = QtWidgets.QVBoxLayout(self)
     
-    @QtCore.Slot()
-
+    @Slot(dict)
     def testeSlot(self, lista: dict):
         print(lista)
 

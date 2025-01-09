@@ -46,11 +46,11 @@ class CentralWidget(QtWidgets.QWidget):
         self.serialPort = QSerialPort(parent=self)
 
     @Slot(bool)
-    def toggleTheme(self, isDarkMode):
+    def toggleTheme(self, isDarkMode:bool):
         self.isDarkMode = isDarkMode
         self.setStyleSheet(globalStyle(isDarkMode))
 
-    @Slot(str)
+    @Slot(int)
     def connectSerial(self, index:int):
         if index >= 0:
             port = TempSettings.get("devices")[index][0]

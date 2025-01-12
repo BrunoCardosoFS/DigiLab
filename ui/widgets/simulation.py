@@ -33,10 +33,11 @@ class AreaSimulation(QtWidgets.QWidget):
         self.Layout.addWidget(self.scrollArea)
 
         # Add tanque
-        tanque = Projeto()
-        self.layoutScrollAreaWidget.addWidget(tanque)
+        self.projeto = Projeto()
+        self.layoutScrollAreaWidget.addWidget(self.projeto)
 
     @Slot(list)
     def receiveData(self, data: list):
-        print(data)
+        if len(data) == 10:
+            self.projeto.updateSimulation(data)
         

@@ -37,7 +37,7 @@ if __name__ == "__main__":
     # Instantiating the main window
     window = MainWindow()
     # Setting the initial window size
-    window.resize(800, 500)
+    window.resize(1000, 600)
     # Showing the main window
     window.show()
 

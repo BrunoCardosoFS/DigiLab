@@ -73,12 +73,16 @@ class Projeto(QtWidgets.QWidget):
                 border-color: #000;
                 border-style: solid;
             }
+            
+            #sensor1, #sensor2, #sensor3{
+                background: red;
+            }
         """
 
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.setStyleSheet(self.styles)
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        self.setFixedSize(380, 380)
+        self.setFixedSize(365, 380)
 
         self.values = ["0","0","0","0","0","0","0","0","0","0"]
 
@@ -87,6 +91,21 @@ class Projeto(QtWidgets.QWidget):
         self.agua.setObjectName("agua")
         self.agua.setFixedSize(246, self.nivelAgua)
         self.agua.move(48, (348 - self.nivelAgua))
+
+        self.sensor1 = QtWidgets.QFrame(parent=self)
+        self.sensor1.setObjectName("sensor1")
+        self.sensor1.setFixedSize(15, 7)
+        self.sensor1.move(48, 300)
+
+        self.sensor2 = QtWidgets.QFrame(parent=self)
+        self.sensor2.setObjectName("sensor2")
+        self.sensor2.setFixedSize(15, 7)
+        self.sensor2.move(48, 200)
+
+        self.sensor3 = QtWidgets.QFrame(parent=self)
+        self.sensor3.setObjectName("sensor3")
+        self.sensor3.setFixedSize(15, 7)
+        self.sensor3.move(48, 100)
 
         self.tanque = QtWidgets.QWidget(self)
         self.tanque.setObjectName("tanque")

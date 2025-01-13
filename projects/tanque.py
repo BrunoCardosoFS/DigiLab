@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Slot
 from PySide6.QtCore import Qt
 
@@ -7,69 +7,80 @@ import os
 class Valvula(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None, valvin: bool = False, valvout: bool = False):
         super().__init__(parent)
+
+        self.styles = f"""
+        Valvula #cano{{
+            border-top-width: 3px;
+            border-left-width: 0px;
+            border-bottom-width: 3px;
+            border-color: #000;
+            border-style: solid;
+            {"border-right: 5px solid #fff;" if valvin else ""}
+            {"border-left: 5px solid #fff;" if valvout else ""}
+        }}
+
+        Valvula #valvula{{
+            background: #000;
+        }}
+        """
+
         self.setAttribute(Qt.WA_StyledBackground, True)
-
-        self.setStyleSheet(f"""
-                            Valvula #cano{{
-                                border-top-width: 3px;
-                                border-left-width: 0px;
-                                border-bottom-width: 3px;
-                                border-color: #000;
-                                border-style: solid;
-                                {"border-right: 5px solid #fff;" if valvin else ""}
-                                {"border-left: 5px solid #fff;" if valvout else ""}
-                            }}
-
-                            Valvula #valvula{{
-                                background: #000;
-                            }}
-        """)
-
+        self.setStyleSheet(self.styles)
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.setFixedSize(50, 40)
 
-        self.cano = QtWidgets.QWidget(self)
+        self.cano = QtWidgets.QFrame(self)
         self.cano.setObjectName("cano")
         self.cano.setFixedSize(50, 20)
         self.cano.move(0, 20)
 
-        self.valvula = QtWidgets.QWidget(self)
-        self.valvula.setAttribute(Qt.WA_StyledBackground, True)
+        self.valvula = QtWidgets.QFrame(self)
         self.valvula.setObjectName("valvula")
         self.valvula.setFixedSize(3, 25)
         self.valvula.move(23, 15)
-
-
-
 
 
 class Projeto(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None):
         super().__init__(parent)
 
+        self.styles = """
+            Projeto{
+                background-color: rgba(0,0,0,0.05);
+            }
+            
+            Projeto QPushButton{
+                padding: 5px 7px;
+            }
+            
+            Projeto QPushButton#buttonUp{
+                qproperty-icon: url(:/images/light/arrow-up.svg);
+            }
+            
+            Projeto QPushButton#buttonDown{
+                qproperty-icon: url(:/images/light/arrow-down.svg);
+            }
+            
+            Projeto #agua{
+                background: blue;
+            }
+
+            Projeto #tanque{
+                border-top-width: 0px;
+                border-left-width: 3px;
+                border-bottom-width: 3px;
+                border-right-width: 3px;
+                border-color: #000;
+                border-style: solid;
+            }
+        """
+
         self.setAttribute(Qt.WA_StyledBackground, True)
-
-        self.setStyleSheet("""
-                            Projeto{
-                                background-color: rgba(0,0,0,0.05);
-                            }
-                           
-                           Projeto #agua{
-                                background: blue;
-                            }
-
-                            Projeto #tanque{
-                                border-top-width: 0px;
-                                border-left-width: 3px;
-                                border-bottom-width: 3px;
-                                border-right-width: 3px;
-                                border-color: #000;
-                                border-style: solid;
-                            }
-        """)
-
+        self.setStyleSheet(self.styles)
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        self.setFixedSize(500, 400)
+        self.setFixedSize(380, 380)
+
+        self.values = ["0","0","0","0","0","0","0","0","0","0"]
 
         self.nivelAgua = 0
         self.agua = QtWidgets.QWidget(self)
@@ -89,6 +100,16 @@ class Projeto(QtWidgets.QWidget):
         self.valv2 = Valvula(self, valvout=True)
         self.valv2.setObjectName("valv2")
         self.valv2.move(293, 305)
+
+        self.buttonUp = QtWidgets.QPushButton(parent=self, text="")
+        self.buttonUp.setObjectName("buttonUp")
+        self.buttonUp.setCursor(QtCore.Qt.PointingHandCursor)
+        self.buttonUp.move(325, 293)
+
+        self.buttonDown = QtWidgets.QPushButton(parent=self, text="")
+        self.buttonDown.setObjectName("buttonDown")
+        self.buttonDown.setCursor(QtCore.Qt.PointingHandCursor)
+        self.buttonDown.move(325, 350)
 
     @Slot(list)
     def updateSimulation(self, data: list):
@@ -113,4 +134,4 @@ class Projeto(QtWidgets.QWidget):
         print(data)
 
     def getValues(self):
-        return [0,0,0,0,0,0,0,0,0,0]
+        return self.values

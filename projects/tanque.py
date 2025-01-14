@@ -1,10 +1,10 @@
 from PySide6 import QtWidgets, QtCore, QtGui
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, Signal
 from PySide6.QtCore import Qt
 
 import os
 
-class Valvula(QtWidgets.QWidget):
+class Valvula(QtWidgets.QFrame):
     def __init__(self, parent: QtWidgets.QWidget = None, valvin: bool = False, valvout: bool = False):
         super().__init__(parent)
 
@@ -29,6 +29,8 @@ class Valvula(QtWidgets.QWidget):
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.setFixedSize(50, 40)
 
+        self.value = 0.0
+
         self.cano = QtWidgets.QFrame(self)
         self.cano.setObjectName("cano")
         self.cano.setFixedSize(50, 20)
@@ -37,35 +39,54 @@ class Valvula(QtWidgets.QWidget):
         self.valvula = QtWidgets.QFrame(self)
         self.valvula.setObjectName("valvula")
         self.valvula.setFixedSize(3, 25)
-        self.valvula.move(23, 15)
+        self.valvula.move(23, 13)
 
+    @Slot(float)
+    def setValue(self, value: float):
+        if value >= 0 and value <= 1:
+            self.value = value
+            self.valvula.move(23, int(13*(1-value)))
 
-class Projeto(QtWidgets.QWidget):
-    def __init__(self, parent: QtWidgets.QWidget = None):
+class Sensor(QtWidgets.QFrame):
+    def __init__(self, parent: QtWidgets.QWidget = None, x: int = 0, y: int = 0):
         super().__init__(parent)
+        self.position = (x, y)
+        self.value = 0
+        self.setStyleSheet("background: red;")
+        self.setFixedSize(15, 7)
+        self.move(x, y)
 
+    @Slot(int)
+    def setValue(self, value: int):
+        self.value = value
+        self.setStyleSheet("background: #0f0;" if value else "background: #f00;")
+
+
+class Tanque(QtWidgets.QFrame):
+    def __init__(self, parent: QtWidgets.QWidget = None, ):
+        super().__init__(parent)
         self.styles = """
-            Projeto{
-                background-color: rgba(0,0,0,0.05);
+            Tanque{
+                background-color: rgba(0,0,0,0.0);
             }
             
-            Projeto QPushButton{
+            Tanque QPushButton{
                 padding: 5px 7px;
             }
             
-            Projeto QPushButton#buttonUp{
+            Tanque QPushButton#buttonUp{
                 qproperty-icon: url(:/images/light/arrow-up.svg);
             }
             
-            Projeto QPushButton#buttonDown{
+            Tanque QPushButton#buttonDown{
                 qproperty-icon: url(:/images/light/arrow-down.svg);
             }
             
-            Projeto #agua{
+            Tanque #agua{
                 background: blue;
             }
 
-            Projeto #tanque{
+            Tanque #tanque{
                 border-top-width: 0px;
                 border-left-width: 3px;
                 border-bottom-width: 3px;
@@ -84,73 +105,102 @@ class Projeto(QtWidgets.QWidget):
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.setFixedSize(365, 380)
 
-        self.values = ["0","0","0","0","0","0","0","0","0","0"]
-
         self.nivelAgua = 0
-        self.agua = QtWidgets.QWidget(self)
+
+        self.agua = QtWidgets.QFrame(self)
         self.agua.setObjectName("agua")
         self.agua.setFixedSize(246, self.nivelAgua)
         self.agua.move(48, (348 - self.nivelAgua))
 
-        self.sensor1 = QtWidgets.QFrame(parent=self)
-        self.sensor1.setObjectName("sensor1")
-        self.sensor1.setFixedSize(15, 7)
-        self.sensor1.move(48, 300)
+        self.sensor1 = Sensor(self, x=48, y=300)
+        self.sensor2 = Sensor(self, x=48, y=200)
+        self.sensor3 = Sensor(self, x=48, y=100)
 
-        self.sensor2 = QtWidgets.QFrame(parent=self)
-        self.sensor2.setObjectName("sensor2")
-        self.sensor2.setFixedSize(15, 7)
-        self.sensor2.move(48, 200)
-
-        self.sensor3 = QtWidgets.QFrame(parent=self)
-        self.sensor3.setObjectName("sensor3")
-        self.sensor3.setFixedSize(15, 7)
-        self.sensor3.move(48, 100)
-
-        self.tanque = QtWidgets.QWidget(self)
+        self.tanque = QtWidgets.QFrame(self)
         self.tanque.setObjectName("tanque")
         self.tanque.setFixedSize(250, 350)
         self.tanque.move(46, 0)
 
-        self.valv1 = Valvula(self, valvin=True)
-        self.valv1.setObjectName("valv1")
-        self.valv1.move(0, 0)
+        self.valvIn = Valvula(self, valvin=True)
+        self.valvIn.move(0, 0)
 
-        self.valv2 = Valvula(self, valvout=True)
-        self.valv2.setObjectName("valv2")
-        self.valv2.move(293, 305)
+        self.valvOut = Valvula(self, valvout=True)
+        self.valvOut.move(292, 305)
 
         self.buttonUp = QtWidgets.QPushButton(parent=self, text="")
         self.buttonUp.setObjectName("buttonUp")
         self.buttonUp.setCursor(QtCore.Qt.PointingHandCursor)
         self.buttonUp.move(325, 293)
+        self.buttonUp.clicked.connect(lambda: self.valvOut.setValue((self.valvOut.value + 0.25) if (self.valvOut.value < 1.0) else 1.0))
 
         self.buttonDown = QtWidgets.QPushButton(parent=self, text="")
         self.buttonDown.setObjectName("buttonDown")
         self.buttonDown.setCursor(QtCore.Qt.PointingHandCursor)
         self.buttonDown.move(325, 350)
+        self.buttonDown.clicked.connect(lambda: self.valvOut.setValue((self.valvOut.value - 0.25) if self.valvOut.value > 0.0 else 0.0))
 
-    @Slot(list)
-    def updateSimulation(self, data: list):
-        if data[0] == "1":
-            vazEntrada = 1
-        else:
-            vazEntrada = 0
-
-        nivelAgua = self.nivelAgua + vazEntrada
+    @Slot()
+    def updateNivelAgua(self):
+        nivelAgua = self.nivelAgua + self.valvIn.value - (2 * self.valvOut.value)
 
         maxAgua = 328
 
-        if nivelAgua <= maxAgua:
+        if nivelAgua>=0 and nivelAgua <= maxAgua:
             self.nivelAgua = nivelAgua
             self.agua.setFixedHeight(self.nivelAgua)
             self.agua.move(48, (348 - self.nivelAgua))
-        elif nivelAgua > maxAgua and self.nivelAgua != maxAgua:
+        elif nivelAgua >=0 and nivelAgua > maxAgua and self.nivelAgua != maxAgua:
             self.nivelAgua = maxAgua
             self.agua.setFixedHeight(maxAgua)
-            self.agua.move(48, 0)
+            self.agua.move(48, 20)
 
-        print(data)
+        if (341-self.nivelAgua) <= self.sensor1.position[1]:
+            self.sensor1.setValue(1)
+        else:
+            self.sensor1.setValue(0)
+        
+        if (341-self.nivelAgua) <= self.sensor2.position[1]:
+            self.sensor2.setValue(1)
+        else:
+            self.sensor2.setValue(0)
+        
+        if (341-self.nivelAgua) <= self.sensor3.position[1]:
+            self.sensor3.setValue(1)
+        else:
+            self.sensor3.setValue(0)
 
+
+
+class Projeto(QtWidgets.QWidget):
+    def __init__(self, parent: QtWidgets.QWidget = None):
+        super().__init__(parent)
+
+        self.values = ["0","0","0","0","0","0","0","0","0","0"]
+
+        self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+
+        self.Layout = QtWidgets.QVBoxLayout(self)
+        self.Layout.setContentsMargins(0, 0, 0, 0)
+
+        self.tanque = Tanque(self)
+
+        self.Layout.addWidget(self.tanque)
+
+        
+
+    @Slot(list)
+    def updateSimulation(self, data: list):
+        if data[0] == "1" and self.tanque.valvIn != 0:
+            self.tanque.valvIn.setValue(1)
+        elif  self.tanque.valvIn != 1:
+            self.tanque.valvIn.setValue(0)
+
+        self.tanque.updateNivelAgua()
+
+    @Slot()
     def getValues(self):
+        self.values[0] = str(self.tanque.sensor1.value)
+        self.values[1] = str(self.tanque.sensor2.value)
+        self.values[2] = str(self.tanque.sensor3.value)
+
         return self.values

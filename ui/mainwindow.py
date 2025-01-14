@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, Slot, QSettings
+from PySide6.QtCore import Qt, Slot, QSettings, QByteArray, QTimer
 from PySide6.QtGui import QIcon, QCloseEvent
 from PySide6.QtSerialPort import QSerialPort
 
@@ -20,6 +20,9 @@ class CentralWidget(QtWidgets.QWidget):
         self.setObjectName("CentralWidget")
         self.setAttribute(Qt.WA_StyledBackground, True)
 
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.writeSerial)
+
         self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
         self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
@@ -36,6 +39,9 @@ class CentralWidget(QtWidgets.QWidget):
 
         self.LeftMenu.selectDevice.currentIndexChanged.connect(self.connectSerial)
         self.LeftMenu.closeSerial.connect(self.closeSerial)
+
+        self.LeftMenu.btnPlay.clicked.connect(self.startSimulation)
+        self.LeftMenu.btnStop.clicked.connect(self.stopSimulation)
 
         self.AreaSimulation = AreaSimulation(self)
 
@@ -111,6 +117,48 @@ class CentralWidget(QtWidgets.QWidget):
         data = list(data)
 
         self.AreaSimulation.receiveData(data)
+
+    @Slot()
+    def writeSerial(self):
+        values = self.AreaSimulation.projeto.getValues()
+        data = "".join(values)
+        print(data)
+        data = QByteArray(data.encode())
+
+        if self.serialPort.isOpen():
+            self.serialPort.write(data)
+        else:
+            self.timer.stop()
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setWindowTitle("Conexão interrompida")
+            messageBox.setIcon(QtWidgets.QMessageBox.Critical)
+            messageBox.setText("Verifique o dispositivo e tente novamente.")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+
+            messageBox.exec()
+
+
+    @Slot()
+    def startSimulation(self):
+        if self.serialPort.isOpen():
+            self.timer.start(30)
+            self.LeftMenu.selectDevice.setDisabled(True)
+            self.LeftMenu.btnUpdateDevices.setDisabled(True)
+        else:
+            self.timer.stop()
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setWindowTitle("Nenhum dispositivo conectado")
+            messageBox.setIcon(QtWidgets.QMessageBox.Critical)
+            messageBox.setText("Selecione um dispositivo e tente novamente.")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+
+            messageBox.exec()
+
+    @Slot()
+    def stopSimulation(self):
+        self.timer.stop()
+        self.LeftMenu.selectDevice.setDisabled(False)
+        self.LeftMenu.btnUpdateDevices.setDisabled(False)
 
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):

@@ -13,7 +13,7 @@ class Projeto(QtWidgets.QWidget):
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
 
-        self.label = QtWidgets.QLabel(parent=self, text="Base")
+        self.label = QtWidgets.QLabel(parent=self, text="Experimento 1")
 
         self.Layout.addWidget(self.label)
 

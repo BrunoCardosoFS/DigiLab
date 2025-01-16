@@ -9,6 +9,7 @@ import resources.resources
 
 class LeftMenu(QtWidgets.QWidget):
     toggleDarkMode = Signal(bool)
+    
     closeSerial = Signal()
 
     def __init__(self, parent: QtWidgets.QWidget):
@@ -43,10 +44,6 @@ class LeftMenu(QtWidgets.QWidget):
         self.selectSimulation.setCursor(QtCore.Qt.PointingHandCursor)
         self.selectSimulation.setPlaceholderText("Selecionar experimento")
         self.selectSimulation.setFixedHeight(32)
-        
-        self.selectSimulation.addItem("Tanque")
-        self.selectSimulation.addItem("Semáforo")
-        self.selectSimulation.addItem("Esteira")
 
         # self.selectSimulation.clear()
 

@@ -6,6 +6,10 @@ from PySide6.QtSerialPort import QSerialPort
 from style.style import globalStyle
 
 from modules.tempsettings import TempSettings
+from modules.backend.projects import getProjects
+
+import importlib
+import os
 
 from ui.widgets.leftmenu import LeftMenu
 from ui.widgets.simulation import AreaSimulation
@@ -16,35 +20,50 @@ import resources.resources
 class CentralWidget(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QMainWindow):
         super().__init__()
-    
+        # Setting the widget options
         self.setObjectName("CentralWidget")
         self.setAttribute(Qt.WA_StyledBackground, True)
-
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.writeSerial)
 
         self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
         self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
         self.setStyleSheet(globalStyle(self.isDarkMode))
 
+        # Timer for simulation
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.writeSerial)
+
+        # Layout
         self.Layout = QtWidgets.QHBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
         self.Layout.setSpacing(0)
 
         self.setLayout(self.Layout)
 
+        # Left Menu
         self.LeftMenu = LeftMenu(self)
         self.LeftMenu.toggleDarkMode.connect(self.toggleTheme)
 
+        # List of projects
+        self.listProjects = getProjects()
+
+        for project in self.listProjects:
+            self.LeftMenu.selectSimulation.addItem(project)
+
+        self.LeftMenu.selectSimulation.currentTextChanged.connect(self.toggleProject)
+
+        # Serial
         self.LeftMenu.selectDevice.currentIndexChanged.connect(self.connectSerial)
         self.LeftMenu.closeSerial.connect(self.closeSerial)
 
+        # Simulation controls
         self.LeftMenu.btnPlay.clicked.connect(self.startSimulation)
         self.LeftMenu.btnStop.clicked.connect(self.stopSimulation)
 
+        # Area Simulation
         self.AreaSimulation = AreaSimulation(self)
 
+        # Adding widgets to the layout
         self.Layout.addWidget(self.LeftMenu)
         self.Layout.addWidget(self.AreaSimulation)
 
@@ -57,6 +76,26 @@ class CentralWidget(QtWidgets.QWidget):
     def toggleTheme(self, isDarkMode:bool):
         self.isDarkMode = isDarkMode
         self.setStyleSheet(globalStyle(isDarkMode))
+
+    @Slot(str)
+    def toggleProject(self, project):
+        pathProject = os.path.join(TempSettings.get("folderProjects"), f"{project}.py")
+
+        try:
+            spec = importlib.util.spec_from_file_location(project, pathProject)
+            modulo = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(modulo)
+
+            self.AreaSimulation.layoutScrollAreaWidget.removeWidget(self.AreaSimulation.projeto)
+            self.AreaSimulation.projeto.deleteLater()
+
+            self.AreaSimulation.projeto = modulo.Projeto()
+            self.AreaSimulation.layoutScrollAreaWidget.addWidget(self.AreaSimulation.projeto)
+
+        except:
+            print("Erro ao carregar o projeto")
+            pass
+
 
     @Slot(int)
     def connectSerial(self, index:int):
@@ -136,7 +175,6 @@ class CentralWidget(QtWidgets.QWidget):
             messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
 
             messageBox.exec()
-
 
     @Slot()
     def startSimulation(self):

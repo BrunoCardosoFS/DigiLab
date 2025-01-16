@@ -181,6 +181,9 @@ class LeftMenu(QtWidgets.QWidget):
             messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
 
             messageBox.exec()
+        else:
+            self.selectDevice.setDisabled(True)
+            self.selectDevice.setPlaceholderText("Nenhum disp. encontrado")
 
     @Slot()
     def updateDarkMode(self):

@@ -156,9 +156,11 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot()
     def stopSimulation(self):
-        self.timer.stop()
         self.LeftMenu.selectDevice.setDisabled(False)
         self.LeftMenu.btnUpdateDevices.setDisabled(False)
+        self.AreaSimulation.projeto.resetSimulation()
+        
+        self.timer.stop()
 
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):

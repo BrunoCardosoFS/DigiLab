@@ -171,6 +171,8 @@ class LeftMenu(QtWidgets.QWidget):
                 self.selectDevice.addItem(f"{device[0]} - {device[1]}")
 
         elif not ignoreDialogs:
+            self.selectDevice.setDisabled(True)
+
             messageBox = QtWidgets.QMessageBox()
             messageBox.setWindowTitle("Nenhum dispositivo encontrado")
             messageBox.setIcon(QtWidgets.QMessageBox.Warning)

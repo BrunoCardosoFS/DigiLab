@@ -78,8 +78,11 @@ class CentralWidget(QtWidgets.QWidget):
         self.setStyleSheet(globalStyle(isDarkMode))
 
     @Slot(str)
-    def toggleProject(self, project):
-        pathProject = os.path.join(TempSettings.get("folderProjects"), f"{project}.py")
+    def toggleProject(self, project:str):
+        if os.path.isabs(project):
+            pathProject = project
+        else:
+            pathProject = os.path.join(TempSettings.get("folderProjects"), f"{project}.py")
 
         try:
             spec = importlib.util.spec_from_file_location(project, pathProject)

@@ -4,6 +4,10 @@ from modules.nuitkabuild import compile_with_nuitka
 pyfile = os.path.abspath("./main.py")
 icon = os.path.abspath("./resources/icons/icon.ico")
 
+projects = os.path.abspath("./projects")
+
+copyright = os.path.abspath("./COPYING")
+
 compile_with_nuitka(
     pyfile=pyfile,
     product_name="Simulador Circuitos Digitais",
@@ -14,6 +18,8 @@ compile_with_nuitka(
     icon=icon,
     windows_disable_console=True,
     onefile=False,
+    foldersCopy=[[projects]],
+    filesCopy=[[copyright]],
     other_options=["--msvc=latest", "--enable-plugin=pyside6"]
 )
 

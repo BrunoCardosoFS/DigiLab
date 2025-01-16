@@ -24,15 +24,16 @@ system = platform.system()
 
 def copyFiles(filesCopy: list, output_dir: str):
     if filesCopy:
-        print(f"Copying files {filesCopy}...")
         for file in filesCopy:
             try:
                 if(len(file) > 1):
                     output = f"{output_dir}/{file[1]}"
                     if not os.path.exists(output):
                         os.makedirs(output)
+                    print(f"\nCopying file \"{file[0]}\" to {output}...")
                     shutil.copy(file[0], output)
                 else:
+                    print(f"\nCopying file \"{file[0]}\" to {output_dir}...")
                     shutil.copy(file[0], output_dir)
             except:
                 print(f"Error copying file: {file}")
@@ -42,13 +43,16 @@ def ignore_pycache(path, content):
 
 def copyFolders(foldersCopy: list, output_dir: str):
     if foldersCopy:
-        print(f"Copying folders {foldersCopy}...")
         for folder in foldersCopy:
             try:
                 if(len(folder) > 1):
-                    shutil.copytree(folder[0], f"{output_dir}/{folder[1]}/{os.path.basename(folder[0])}", ignore=ignore_pycache)
+                    output = f"{output_dir}/{folder[1]}/{os.path.basename(folder[0])}"
+                    print(f"\nCopying folder \"{folder[0]}\" to {f"{output_dir}/{folder[1]}"}...")
+                    shutil.copytree(folder[0], output, ignore=ignore_pycache)
                 else:
-                    shutil.copytree(folder[0], f"{output_dir}/{os.path.basename(folder[0])}", ignore=ignore_pycache)
+                    output = f"{output_dir}/{os.path.basename(folder[0])}"
+                    print(f"\nCopying folder \"{folder[0]}\" to {output_dir}...")
+                    shutil.copytree(folder[0], output, ignore=ignore_pycache)
             except:
                 print(f"Error copying folder: {folder}")
 

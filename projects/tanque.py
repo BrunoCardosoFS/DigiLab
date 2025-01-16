@@ -169,6 +169,16 @@ class Tanque(QtWidgets.QFrame):
         else:
             self.sensor3.setValue(0)
 
+    @Slot()
+    def resetTanque(self):
+        self.sensor1.setValue(0)
+        self.sensor2.setValue(0)
+        self.sensor3.setValue(0)
+
+        self.nivelAgua = 0
+        self.agua.setFixedHeight(self.nivelAgua)
+        self.agua.move(48, 348)
+
 
 
 class Projeto(QtWidgets.QWidget):
@@ -186,7 +196,9 @@ class Projeto(QtWidgets.QWidget):
 
         self.Layout.addWidget(self.tanque)
 
-        
+    @Slot()
+    def resetSimulation(self):
+        self.tanque.resetTanque()
 
     @Slot(list)
     def updateSimulation(self, data: list):

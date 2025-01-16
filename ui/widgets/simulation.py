@@ -2,7 +2,7 @@ from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Slot
 from PySide6.QtCore import Qt
 
-from projects.tanque import Projeto
+from projects.base import Projeto
 
 class AreaSimulation(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget):

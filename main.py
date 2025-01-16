@@ -27,11 +27,12 @@ if __name__ == "__main__":
     # app.setStyle(QStyleFactory.create("Fusion"))
     app.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
+    # Checking if the system is in dark mode
     windowColor = app.palette().color(QPalette.Window)
     isDarkMode = False if windowColor.lightnessF() > 0.5 else True
 
+    # Setting the initial settings
     TempSettings.set("isDarkModeSystem", isDarkMode)
-    
     TempSettings.set("path", os.path.dirname(sys.argv[0]))
     
     # Instantiating the main window

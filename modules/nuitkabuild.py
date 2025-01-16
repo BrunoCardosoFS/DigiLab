@@ -17,9 +17,40 @@
 import os
 import subprocess
 import sys
-import platform 
+import platform
+import shutil
 
 system = platform.system()
+
+def copyFiles(filesCopy: list, output_dir: str):
+    if filesCopy:
+        print(f"Copying files {filesCopy}...")
+        for file in filesCopy:
+            try:
+                if(len(file) > 1):
+                    output = f"{output_dir}/{file[1]}"
+                    if not os.path.exists(output):
+                        os.makedirs(output)
+                    shutil.copy(file[0], output)
+                else:
+                    shutil.copy(file[0], output_dir)
+            except:
+                print(f"Error copying file: {file}")
+
+def ignore_pycache(path, content):
+    return {"__pycache__"} if "__pycache__" in content else set()
+
+def copyFolders(foldersCopy: list, output_dir: str):
+    if foldersCopy:
+        print(f"Copying folders {foldersCopy}...")
+        for folder in foldersCopy:
+            try:
+                if(len(folder) > 1):
+                    shutil.copytree(folder[0], f"{output_dir}/{folder[1]}/{os.path.basename(folder[0])}", ignore=ignore_pycache)
+                else:
+                    shutil.copytree(folder[0], f"{output_dir}/{os.path.basename(folder[0])}", ignore=ignore_pycache)
+            except:
+                print(f"Error copying folder: {folder}")
 
 def compile_with_nuitka(
         pyfile: str,
@@ -34,6 +65,8 @@ def compile_with_nuitka(
         windows_disable_console: bool = False,
         onefile: bool = False,
         needs_admin: bool = False,
+        foldersCopy: list = [],
+        filesCopy: list = [],
         other_options: list = [],
 ):
     pyfile = pyfile.replace("\\", "/")
@@ -87,6 +120,9 @@ def compile_with_nuitka(
         command = [python_exec, "-m", "nuitka"] + nuitka_options + ["--noinclude-numba-mode=nofollow", "--follow-imports"]
         subprocess.run(command, check=True)
         print("\nCompilation completed successfully!")
+        output = f"{output}/{os.path.splitext(os.path.basename(pyfile))[0]}.dist"
+        copyFolders(foldersCopy, output)
+        copyFiles(filesCopy, output)
         print(f"\nCompilation output: {output}")
     except subprocess.CalledProcessError as e:
         print("Compilation error:", e)

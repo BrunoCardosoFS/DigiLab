@@ -52,6 +52,8 @@ class CentralWidget(QtWidgets.QWidget):
 
         self.LeftMenu.selectSimulation.currentTextChanged.connect(self.toggleProject)
 
+        self.LeftMenu.btnOpenSimulation.clicked.connect(self.openProject)
+
         # Serial
         self.LeftMenu.selectDevice.currentIndexChanged.connect(self.connectSerial)
         self.LeftMenu.closeSerial.connect(self.closeSerial)
@@ -98,6 +100,14 @@ class CentralWidget(QtWidgets.QWidget):
         except:
             print("Erro ao carregar o projeto")
             pass
+
+    @Slot()
+    def openProject(self):
+        file, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Abrir Projeto", "", "Arquivos Python (*.py)")
+        
+        if file:
+            self.toggleProject(file)
+            self.LeftMenu.selectSimulation.setCurrentIndex(-1)
 
 
     @Slot(int)

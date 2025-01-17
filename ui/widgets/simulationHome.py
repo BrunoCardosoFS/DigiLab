@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtCore, QtGui
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, Qt
 
 
 class Projeto(QtWidgets.QWidget):
@@ -10,7 +10,8 @@ class Projeto(QtWidgets.QWidget):
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
 
-        self.label = QtWidgets.QLabel(parent=self, text="Simulação")
+        logoPixmap = QtGui.QPixmap(":/images/icons/icon.svg").scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.label = QtWidgets.QLabel(parent=self, text="", pixmap=logoPixmap)
 
         self.Layout.addWidget(self.label)
 

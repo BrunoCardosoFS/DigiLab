@@ -1,6 +1,5 @@
 from PySide6 import QtWidgets, QtCore, QtGui
-from PySide6.QtCore import Slot, Signal
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Slot, Qt
 
 import os
 

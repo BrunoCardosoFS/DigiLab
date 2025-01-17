@@ -45,6 +45,15 @@ def globalStyle(isDarkMode: bool):
             border-radius: 5px;
         }}
 
+        AreaSimulation QPushButton{{
+            padding: 5px 7px;
+            background-color: {variables["color2"]};
+        }}
+
+        AreaSimulation QPushButton:hover{{
+            background-color: {variables["color3"]};
+        }}
+
         QPushButton:hover, QComboBox:hover{{
             background-color: {variables["color2"]};
         }}

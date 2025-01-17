@@ -207,7 +207,9 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot()
     def stopSimulation(self):
-        self.LeftMenu.selectDevice.setDisabled(False)
+        if self.LeftMenu.selectDevice.count() > 0:
+            self.LeftMenu.selectDevice.setDisabled(False)
+            
         self.LeftMenu.btnUpdateDevices.setDisabled(False)
         self.AreaSimulation.projeto.resetSimulation()
         

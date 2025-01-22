@@ -34,10 +34,14 @@ class AreaSimulation(QtWidgets.QWidget):
 
         # Add tanque
         self.projeto = Projeto()
+        self.projeto.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        
         self.layoutScrollAreaWidget.addWidget(self.projeto)
 
     @Slot(list)
     def receiveData(self, data: list):
-        if len(data) == 10:
+        if not self.projeto.useHardware:
+            self.projeto.updateSimulation([])
+        elif len(data) == 10:
             self.projeto.updateSimulation(data)
         

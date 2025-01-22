@@ -10,6 +10,7 @@ class Componente(QtWidgets.QWidget):
 class Projeto(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None):
         super().__init__(parent)
+        self.useHardware = False
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         
         self.values = ["0","0","0","0","0","0","0","0","0","0"]

@@ -24,6 +24,8 @@ class CentralWidget(QtWidgets.QWidget):
         self.setObjectName("CentralWidget")
         self.setAttribute(Qt.WA_StyledBackground, True)
 
+        self.useHardware = False
+
         self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
         self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
@@ -71,7 +73,6 @@ class CentralWidget(QtWidgets.QWidget):
 
         # Serial Manager
         self.serialPort = QSerialPort(parent=self)
-
         self.serialPort.readyRead.connect(self.readSerial)
 
     @Slot(bool)
@@ -161,14 +162,15 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot()
     def readSerial(self):
-        try:
-            data = self.serialPort.readAll().data().decode().strip()
-        except UnicodeDecodeError:
-            data = ""
+        if self.useHardware:
+            try:
+                data = self.serialPort.readAll().data().decode().strip()
+            except:
+                data = ""
 
-        data = list(data)
+            data = list(data)
 
-        self.AreaSimulation.receiveData(data)
+            self.AreaSimulation.receiveData(data)
 
     @Slot()
     def writeSerial(self):
@@ -177,7 +179,9 @@ class CentralWidget(QtWidgets.QWidget):
         print(data)
         data = QByteArray(data.encode())
 
-        if self.serialPort.isOpen():
+        if not self.useHardware:
+            self.AreaSimulation.receiveData([])
+        elif self.serialPort.isOpen():
             self.serialPort.write(data)
         else:
             self.timer.stop()
@@ -191,10 +195,21 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot()
     def startSimulation(self):
-        if self.serialPort.isOpen():
-            self.timer.start(30)
+        self.useHardware = self.AreaSimulation.projeto.useHardware
+
+        if not self.useHardware:
+            print("Simulation started")
+            self.LeftMenu.selectSimulation.setDisabled(True)
+            self.LeftMenu.btnOpenSimulation.setDisabled(True)
             self.LeftMenu.selectDevice.setDisabled(True)
             self.LeftMenu.btnUpdateDevices.setDisabled(True)
+            self.timer.start(30)
+        elif self.serialPort.isOpen():
+            self.LeftMenu.selectSimulation.setDisabled(True)
+            self.LeftMenu.btnOpenSimulation.setDisabled(True)
+            self.LeftMenu.selectDevice.setDisabled(True)
+            self.LeftMenu.btnUpdateDevices.setDisabled(True)
+            self.timer.start(30)
         else:
             self.timer.stop()
             messageBox = QtWidgets.QMessageBox()
@@ -207,13 +222,17 @@ class CentralWidget(QtWidgets.QWidget):
 
     @Slot()
     def stopSimulation(self):
+        self.timer.stop()
+        
         if self.LeftMenu.selectDevice.count() > 0:
             self.LeftMenu.selectDevice.setDisabled(False)
-            
+        
+        
+        self.LeftMenu.selectSimulation.setDisabled(False)
+        self.LeftMenu.btnOpenSimulation.setDisabled(False)
+
         self.LeftMenu.btnUpdateDevices.setDisabled(False)
         self.AreaSimulation.projeto.resetSimulation()
-        
-        self.timer.stop()
 
 # Creating the main window
 class MainWindow(QtWidgets.QMainWindow):

@@ -5,6 +5,7 @@ from PySide6.QtCore import Slot, Qt
 class Projeto(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None):
         super().__init__(parent)
+        self.useHardware = False
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
 
         self.Layout = QtWidgets.QVBoxLayout(self)

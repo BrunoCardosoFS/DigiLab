@@ -174,6 +174,9 @@ class Tanque(QtWidgets.QFrame):
         self.sensor2.setValue(0)
         self.sensor3.setValue(0)
 
+        self.valvIn.setValue(0)
+        self.valvOut.setValue(0)
+
         self.nivelAgua = 0
         self.agua.setFixedHeight(self.nivelAgua)
         self.agua.move(48, 348)
@@ -183,7 +186,7 @@ class Tanque(QtWidgets.QFrame):
 class Projeto(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None):
         super().__init__(parent)
-
+        self.useHardware = True
         self.values = ["0","0","0","0","0","0","0","0","0","0"]
 
         self.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -213,5 +216,6 @@ class Projeto(QtWidgets.QWidget):
         self.values[0] = str(self.tanque.sensor1.value)
         self.values[1] = str(self.tanque.sensor2.value)
         self.values[2] = str(self.tanque.sensor3.value)
+        self.values[3] = "1" if self.tanque.valvOut.value else "0"
 
         return self.values

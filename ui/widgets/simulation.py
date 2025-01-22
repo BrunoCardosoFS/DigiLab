@@ -38,6 +38,8 @@ class AreaSimulation(QtWidgets.QWidget):
 
     @Slot(list)
     def receiveData(self, data: list):
-        if len(data) == 10:
+        if not self.projeto.useHardware:
+            self.projeto.updateSimulation([])
+        elif len(data) == 10:
             self.projeto.updateSimulation(data)
         

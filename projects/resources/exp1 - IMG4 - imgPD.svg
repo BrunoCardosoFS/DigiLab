@@ -1,0 +1,13 @@
+<svg width="1000" height="500" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="a">
+            <stop style="stop-color:#723636;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#572b2b;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="b" x1="192.703" y1="487.034" x2="192.877" y2="499.26" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g style="display:inline">
+        <path style="display:inline;fill:#d3e5fd;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M648.36 554.615h85.727V773H648.36z" transform="matrix(1.1244 0 0 1.1244 -124.046 -416.44)"/>
+        <path style="display:inline;fill:#9b633d;fill-opacity:1;stroke:#9b633d;stroke-width:.05;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M648.36 554.396h1.5v218.979h-1.5z" transform="matrix(1.1244 0 0 1.1244 -124.046 -416.44)"/>
+    </g>
+</svg>

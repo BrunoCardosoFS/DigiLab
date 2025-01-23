@@ -101,8 +101,14 @@ class CentralWidget(QtWidgets.QWidget):
             self.AreaSimulation.layoutScrollAreaWidget.addWidget(self.AreaSimulation.projeto)
 
         except:
-            print("Erro ao carregar o projeto")
-            pass
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setWindowTitle("Erro ao abrir projeto")
+            messageBox.setIcon(QtWidgets.QMessageBox.Critical)
+            messageBox.setText("Não foi possível abrir o projeto.")
+            messageBox.setInformativeText(f'Verifique "{project}" e tente novamente')
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+
+            messageBox.exec()
 
     @Slot()
     def openProject(self):

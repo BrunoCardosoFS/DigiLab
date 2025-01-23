@@ -1,0 +1,28 @@
+<svg width="1000" height="1000" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="e">
+            <stop style="stop-color:#570b0b;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#380000;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="d">
+            <stop style="stop-color:#43a0ff;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#2391ff;stop-opacity:1" offset=".347"/>
+            <stop style="stop-color:#0080ff;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="c">
+            <stop style="stop-color:#ac5229;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#4f2413;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="b">
+            <stop style="stop-color:#f97a1e;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#cc4c05;stop-opacity:1" offset=".512"/>
+            <stop style="stop-color:#9d3f0d;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop style="stop-color:#ef762f;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#bf4105;stop-opacity:1" offset=".497"/>
+            <stop style="stop-color:#a64109;stop-opacity:1" offset="1"/>
+        </linearGradient>
+    </defs>
+    <path style="fill:#b3d6f8;fill-opacity:1;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M283.979 497.032c-3.551-.06-5.891.182-5.891.182h3.387a6.402 6.402 0 0 1 6.416 6.418v13.303a6.402 6.402 0 0 1-6.416 6.418h-.868s7.673 1.95 10.051 4.69c2.378 2.741 3.857 3.917 5.135 7.548.149.422.282 1.302.404 1.873h44.27c-2.383-6.268-5.42-13.718-8.303-17.694-5.955-8.214-12.951-14.474-20.734-17.916-7.784-3.441-17.895-4.212-23.54-4.64a66.894 66.894 0 0 0-3.911-.182z" transform="translate(0 -57.36)"/>
+</svg>

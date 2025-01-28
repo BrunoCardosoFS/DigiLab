@@ -8,7 +8,7 @@ class Componente(QtWidgets.QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
 
         self.setStyleSheet("""
-            Componente QLabel {color: #fff; font-size: 20px;}
+            Componente QLabel {color: #fff; font-size: 25px; font-weight: bold;}
             QWidget#rectangle {background-color: #000; border-radius: 7px;}
             #ent1, #ent2, #ent3, #saida {background-color: #000; border-radius: 4px;}
             #saidaLed{border-radius: 15px;}
@@ -82,6 +82,22 @@ class Componente(QtWidgets.QWidget):
 
         self.saidaLed.setStyleSheet("background-color: green;" if saída else "background-color: red;")
 
+class Page1(QtWidgets.QWidget):
+    updateSignal = QtCore.Signal()
+    def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], loc: list = []):
+        super().__init__(parent)
+
+        self.Layout = QtWidgets.QGridLayout(self)
+        self.Layout.setContentsMargins(0, 0, 0, 0)
+        self.Layout.setSpacing(60)
+
+        for i, comp in enumerate(components, start=1):
+            component = Componente(expressão=comp, text=str(i), parent=self)
+            self.updateSignal.connect(component.updateOut)
+
+            self.Layout.addWidget(component, *loc[i-1])
+        
+
 
 class Projeto(QtWidgets.QWidget):
     updateSignal = QtCore.Signal()
@@ -92,26 +108,21 @@ class Projeto(QtWidgets.QWidget):
         
         self.values = ["0","0","0","0","0","0","0","0","0","0"]
 
-        self.Layout = QtWidgets.QGridLayout(self)
+        self.Layout = QtWidgets.QStackedLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
-        self.Layout.setSpacing(60)
 
-        self.componente1 = Componente(text="1", expressão="A and (B or C)", parent=self)
-        self.updateSignal.connect(self.componente1.updateOut)
+        comp1 = "A and (B or C)"
+        comp2 = "A and (B and C)"
+        comp3 = "A or (B or C)"
+        comp4 = "A and (B != C)"
 
-        self.componente2 = Componente(text="2", expressão="A and (B and C)", parent=self)
-        self.updateSignal.connect(self.componente2.updateOut)
+        components = [comp1, comp2, comp3, comp4]
+        loc = [[0,0], [0,1], [1,0], [1,1]]
 
-        self.componente3 = Componente(text="3", expressão="A or (B or C)", parent=self)
-        self.updateSignal.connect(self.componente3.updateOut)
+        self.page1 = Page1(components=components, loc=loc, parent=self)
+        self.Layout.addWidget(self.page1)
 
-        self.componente4 = Componente(text="4", expressão="A and (B != C)", parent=self)
-        self.updateSignal.connect(self.componente4.updateOut)
-
-        self.Layout.addWidget(self.componente1, 0, 0)
-        self.Layout.addWidget(self.componente2, 0, 1)
-        self.Layout.addWidget(self.componente3, 1, 0)
-        self.Layout.addWidget(self.componente4, 1, 1)
+        
 
     @Slot()
     def resetSimulation(self):
@@ -120,6 +131,7 @@ class Projeto(QtWidgets.QWidget):
     @Slot(list)
     def updateSimulation(self, data: list):
         self.updateSignal.emit()
+        self.page1.updateSignal.emit()
         pass
 
     @Slot()

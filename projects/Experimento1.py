@@ -96,6 +96,19 @@ class Page1(QtWidgets.QWidget):
             self.updateSignal.connect(component.updateOut)
 
             self.Layout.addWidget(component, *loc[i-1])
+
+class Page2(QtWidgets.QWidget):
+    updateSignal = QtCore.Signal()
+    def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], loc: list = []):
+        super().__init__(parent)
+
+        self.Layout = QtWidgets.QGridLayout(self)
+        self.Layout.setContentsMargins(0, 0, 0, 0)
+        self.Layout.setSpacing(60)
+
+        texto = QtWidgets.QLabel(parent=self, text="Página 2")
+
+        self.Layout.addWidget(texto, 0, 0)
         
 
 
@@ -120,7 +133,12 @@ class Projeto(QtWidgets.QWidget):
         loc = [[0,0], [0,1], [1,0], [1,1]]
 
         self.page1 = Page1(components=components, loc=loc, parent=self)
+        self.page2 = Page2(parent=self)
+
         self.Layout.addWidget(self.page1)
+        self.Layout.addWidget(self.page2)
+
+        self.Layout.setCurrentIndex(0)
 
         
 

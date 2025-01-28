@@ -34,6 +34,8 @@ class AreaSimulation(QtWidgets.QWidget):
 
         # Add tanque
         self.projeto = Projeto()
+        self.projeto.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        
         self.layoutScrollAreaWidget.addWidget(self.projeto)
 
     @Slot(list)

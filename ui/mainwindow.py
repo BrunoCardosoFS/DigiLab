@@ -95,7 +95,9 @@ class CentralWidget(QtWidgets.QWidget):
             self.AreaSimulation.layoutScrollAreaWidget.removeWidget(self.AreaSimulation.projeto)
             self.AreaSimulation.projeto.deleteLater()
 
-            self.AreaSimulation.projeto = modulo.Projeto()
+            self.AreaSimulation.projeto = modulo.Projeto(parent = self.AreaSimulation)
+            self.AreaSimulation.projeto.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+            
             self.AreaSimulation.layoutScrollAreaWidget.addWidget(self.AreaSimulation.projeto)
 
         except:

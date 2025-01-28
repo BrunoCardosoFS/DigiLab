@@ -97,6 +97,8 @@ class LeftMenu(QtWidgets.QWidget):
         self.btnStop.setCursor(QtCore.Qt.PointingHandCursor)
         self.btnStop.setFixedSize(30, 30)
 
+        self.btnStop.setDisabled(True)
+
         self.SimulationControlsLayout.addWidget(self.btnPlay)
         self.SimulationControlsLayout.addWidget(self.btnStop)
 

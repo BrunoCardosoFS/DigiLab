@@ -197,18 +197,14 @@ class CentralWidget(QtWidgets.QWidget):
     def startSimulation(self):
         self.useHardware = self.AreaSimulation.projeto.useHardware
 
-        if not self.useHardware:
+        if not self.useHardware or self.serialPort.isOpen():
             print("Simulation started")
             self.LeftMenu.selectSimulation.setDisabled(True)
             self.LeftMenu.btnOpenSimulation.setDisabled(True)
             self.LeftMenu.selectDevice.setDisabled(True)
             self.LeftMenu.btnUpdateDevices.setDisabled(True)
-            self.timer.start(30)
-        elif self.serialPort.isOpen():
-            self.LeftMenu.selectSimulation.setDisabled(True)
-            self.LeftMenu.btnOpenSimulation.setDisabled(True)
-            self.LeftMenu.selectDevice.setDisabled(True)
-            self.LeftMenu.btnUpdateDevices.setDisabled(True)
+            self.LeftMenu.btnPlay.setDisabled(True)
+            self.LeftMenu.btnStop.setDisabled(False)
             self.timer.start(30)
         else:
             self.timer.stop()
@@ -230,6 +226,8 @@ class CentralWidget(QtWidgets.QWidget):
         
         self.LeftMenu.selectSimulation.setDisabled(False)
         self.LeftMenu.btnOpenSimulation.setDisabled(False)
+        self.LeftMenu.btnPlay.setDisabled(False)
+        self.LeftMenu.btnStop.setDisabled(True)
 
         self.LeftMenu.btnUpdateDevices.setDisabled(False)
         self.AreaSimulation.projeto.resetSimulation()

@@ -1,5 +1,31 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Slot, Qt
+from PySide6.QtSvgWidgets import QSvgWidget
+
+
+svg_content = """
+<svg width="1000" height="1000" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <rect style="fill:#fff;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" width="1000" height="1000" ry="0"/>
+    <path style="fill:#edcf99;fill-opacity:1;stroke-width:1.16646;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M375.225 335.18h249.549v329.64H375.225z"/>
+    <path style="fill:#f4f5ed;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M0 0h1000L624.775 335.18h-249.55Z"/>
+    <path style="fill:#f3deb9;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M1000 1000V0L624.775 335.18v329.64z"/>
+    <path style="fill:#c2a676;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="m0 1000 375.225-335.18V335.18L0 0Z"/>
+    <path style="fill:#d27857;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="m0 1000 375.225-335.18h249.55L1000 1000Z"/>
+    <path style="fill:#ffc113;fill-opacity:1;stroke-width:.69453;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M408.928 199.772S434.16 263.827 500 263.827s91.072-64.055 91.072-64.055z"/>
+    <path style="fill:#ffa604;fill-opacity:1;stroke-width:1.74962;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M496.915 122.13h6.17v77.642h-6.17z"/>
+    <path style="fill:#d68a00;fill-opacity:1;stroke-width:.824063;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M447.235 199.772S443.29 185.634 500 185.634s52.765 14.138 52.765 14.138z"/>
+    <path style="fill:#d68a00;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M476.126 115.455h47.748v6.674h-47.748z"/>
+    <path style="fill:#a9edf3;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="m194.764 686.507 119.204-106.411.458-244.045L194.764 229.16Z"/>
+    <path style="fill:#edcf99;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="m314.426 336.051-.458 244.045-8.897 7.942V327.695z"/>
+    <path style="fill:#f3deb9;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M194.764 229.16 314.426 336.05l-9.355 2.636-110.307-86.539zM194.764 686.507l119.204-106.411-8.897-4.35-110.307 93.3z"/>
+    <path style="fill:#fff;fill-opacity:1;stroke-width:.689446;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M643.386 520.073v24.877l10.258 9.172v-43.221z"/>
+    <path style="fill:#e3e3e3;fill-opacity:1;stroke-width:2.12474;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M113.078 540.07V444.72l-70.34-62.892v221.135z"/>
+    <path style="fill:#fff;fill-opacity:1;stroke-width:1.5603;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M919.014 504.361v56.301l23.216 20.757v-97.815z"/>
+    <path style="fill:#a83837;fill-opacity:1;stroke-width:1.16646;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M428.621 379.847H571.38V664.82H428.621z"/>
+</svg>
+"""
+
+
 
 class Componente(QtWidgets.QWidget):
     def __init__(self, text:str = "", expressão: str = "False", parent: QtWidgets.QWidget = None):
@@ -72,8 +98,6 @@ class Componente(QtWidgets.QWidget):
         self.btEnts[ent].setText(f"{chr(65+ent)}: {'On' if self.ents[ent] else 'Off'}")
         # self.btEnts[ent].setStyleSheet("background-color: green;" if self.ents[ent] else "background-color: red;")
 
-    @QtCore.Slot()
-    def updateOut(self):
         A = self.ents[0]
         B = self.ents[1]
         C = self.ents[2]
@@ -82,9 +106,10 @@ class Componente(QtWidgets.QWidget):
 
         self.saidaLed.setStyleSheet("background-color: green;" if saída else "background-color: red;")
 
+
 class Page1(QtWidgets.QWidget):
     updateSignal = QtCore.Signal()
-    def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], loc: list = []):
+    def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], position: list = []):
         super().__init__(parent)
 
         self.Layout = QtWidgets.QGridLayout(self)
@@ -93,22 +118,31 @@ class Page1(QtWidgets.QWidget):
 
         for i, comp in enumerate(components, start=1):
             component = Componente(expressão=comp, text=str(i), parent=self)
-            self.updateSignal.connect(component.updateOut)
 
-            self.Layout.addWidget(component, *loc[i-1])
+            self.Layout.addWidget(component, *position[i-1])
 
 class Page2(QtWidgets.QWidget):
-    updateSignal = QtCore.Signal()
-    def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], loc: list = []):
+    updateSignal = QtCore.Signal(list)
+    def __init__(self, parent: QtWidgets.QWidget = None, components: list = []):
         super().__init__(parent)
 
         self.Layout = QtWidgets.QGridLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
         self.Layout.setSpacing(60)
 
-        texto = QtWidgets.QLabel(parent=self, text="Página 2")
+        # pixmap = QtGui.QPixmap("d:/Arquivos/Projetos/Pesquisa/Simulador-CD/projects/resources/exp1 - IMG1.svg").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
-        self.Layout.addWidget(texto, 0, 0)
+        # texto = QtWidgets.QLabel(parent=self, text="", pixmap=pixmap)
+
+        # self.Layout.addWidget(texto, 0, 0)
+
+        
+        svg_widget = QSvgWidget(parent=self)
+        svg_widget.renderer().load(svg_content.encode("utf-8"))
+
+        svg_widget.setFixedSize(300, 300)
+
+        self.Layout.addWidget(svg_widget, 0, 0)
         
 
 
@@ -121,8 +155,12 @@ class Projeto(QtWidgets.QWidget):
         
         self.values = ["0","0","0","0","0","0","0","0","0","0"]
 
-        self.Layout = QtWidgets.QStackedLayout(self)
+        self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
+        self.Layout.setSpacing(30)
+
+        self.stackedWidget = QtWidgets.QStackedWidget(self)
+        self.Layout.addWidget(self.stackedWidget)
 
         comp1 = "A and (B or C)"
         comp2 = "A and (B and C)"
@@ -130,16 +168,41 @@ class Projeto(QtWidgets.QWidget):
         comp4 = "A and (B != C)"
 
         components = [comp1, comp2, comp3, comp4]
-        loc = [[0,0], [0,1], [1,0], [1,1]]
+        position = [[0,0], [0,1], [1,0], [1,1]]
 
-        self.page1 = Page1(components=components, loc=loc, parent=self)
-        self.page2 = Page2(parent=self)
+        self.page1 = Page1(components=components, position=position, parent=self.stackedWidget)
+        self.page2 = Page2(parent=self.stackedWidget)
 
-        self.Layout.addWidget(self.page1)
-        self.Layout.addWidget(self.page2)
+        self.stackedWidget.addWidget(self.page1)
+        self.stackedWidget.addWidget(self.page2)
 
-        self.Layout.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(0)
 
+        self.btTo2 = QtWidgets.QPushButton(parent=self, text="Próximo")
+        self.btTo2.clicked.connect(self.nextPage)
+        self.Layout.addWidget(self.btTo2)
+        
+    @Slot(int)
+    def togglePage(self, page:int):
+        self.stackedWidget.setCurrentIndex(page)
+        print(self.stackedWidget.count())
+
+    def nextPage(self):
+        c = self.stackedWidget.currentIndex()
+        count = self.stackedWidget.count() - 1
+
+        if c < count:
+            c = c+1
+            self.stackedWidget.setCurrentIndex(c)
+        else:
+            c = 0
+            self.stackedWidget.setCurrentIndex(c)
+
+        if c == count:
+            self.btTo2.setText("Voltar")
+        else:
+            self.btTo2.setText("Próximo")
+        
         
 
     @Slot()

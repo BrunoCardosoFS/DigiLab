@@ -79,7 +79,7 @@ class Componente(QtWidgets.QWidget):
         self.saidaLed = QtWidgets.QFrame(parent=self)
         self.saidaLed.setObjectName("saidaLed")
         self.saidaLed.setFixedSize(30, 30)
-        self.saidaLed.setStyleSheet("background-color: red;")
+        self.saidaLed.setStyleSheet("background-color: #b0b0b0;")
         self.saidaLed.move(195, 48)
 
         self.rectangle = QtWidgets.QFrame(parent=self)
@@ -104,7 +104,7 @@ class Componente(QtWidgets.QWidget):
 
         saída = eval(self.expressão)
 
-        self.saidaLed.setStyleSheet("background-color: green;" if saída else "background-color: red;")
+        self.saidaLed.setStyleSheet("background-color: green;" if saída else "background-color: #b0b0b0;")
 
 
 class Page1(QtWidgets.QWidget):
@@ -163,7 +163,7 @@ class Projeto(QtWidgets.QWidget):
         self.Layout.addWidget(self.stackedWidget)
 
         comp1 = "A and (B or C)"
-        comp2 = "A and (B and C)"
+        comp2 = "A and not (B and C)"
         comp3 = "A or (B or C)"
         comp4 = "A and (B != C)"
 

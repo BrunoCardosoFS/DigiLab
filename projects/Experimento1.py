@@ -3,7 +3,7 @@ from PySide6.QtCore import Slot, Qt
 from PySide6.QtSvgWidgets import QSvgWidget
 
 
-svg_content = """
+svg_Page2 = """
 <svg width="1000" height="1000" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
     <rect style="fill:#fff;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" width="1000" height="1000" ry="0"/>
     <path style="fill:#edcf99;fill-opacity:1;stroke-width:1.16646;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill" d="M375.225 335.18h249.549v329.64H375.225z"/>
@@ -108,9 +108,9 @@ class Componente(QtWidgets.QWidget):
 
 
 class Page1(QtWidgets.QWidget):
-    updateSignal = QtCore.Signal()
     def __init__(self, parent: QtWidgets.QWidget = None, components: list = [], position: list = []):
         super().__init__(parent)
+        self.useHardware = False
 
         self.Layout = QtWidgets.QGridLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
@@ -123,26 +123,44 @@ class Page1(QtWidgets.QWidget):
 
 class Page2(QtWidgets.QWidget):
     updateSignal = QtCore.Signal(list)
+    setUseHardware = QtCore.Signal(bool)
     def __init__(self, parent: QtWidgets.QWidget = None, components: list = []):
         super().__init__(parent)
+
+        self.useHardware = False
 
         self.Layout = QtWidgets.QGridLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
         self.Layout.setSpacing(60)
 
-        # pixmap = QtGui.QPixmap("d:/Arquivos/Projetos/Pesquisa/Simulador-CD/projects/resources/exp1 - IMG1.svg").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.image = QSvgWidget(parent=self)
+        self.image.renderer().load(svg_Page2.encode("utf-8"))
+        self.image.setFixedSize(300, 300)
 
-        # texto = QtWidgets.QLabel(parent=self, text="", pixmap=pixmap)
+        componentsItems = ["Hardware"]
 
-        # self.Layout.addWidget(texto, 0, 0)
+        for i in range(len(components)):
+            componentsItems.append(f"Componente {i+1}")
 
-        
-        svg_widget = QSvgWidget(parent=self)
-        svg_widget.renderer().load(svg_content.encode("utf-8"))
+        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um componente")
+        self.ComboBox.addItems(componentsItems)
+        self.ComboBox.setFixedHeight(32)
+        self.ComboBox.setCursor(QtCore.Qt.PointingHandCursor)
 
-        svg_widget.setFixedSize(300, 300)
+        self.ComboBox.currentIndexChanged.connect(self.selectSimulation)
 
-        self.Layout.addWidget(svg_widget, 0, 0)
+        self.Layout.addWidget(self.image, 0, 0)
+        self.Layout.addWidget(self.ComboBox, 1, 0)
+
+    @QtCore.Slot(int)
+    def selectSimulation(self, index: int):
+        if index == 0:
+            self.useHardware = True
+            self.setUseHardware.emit(True)
+        else:
+            self.useHardware = False
+            self.setUseHardware.emit(False)
+        pass
         
 
 
@@ -164,14 +182,16 @@ class Projeto(QtWidgets.QWidget):
 
         comp1 = "A and (B or C)"
         comp2 = "A and not (B and C)"
-        comp3 = "A or (B or C)"
+        comp3 = "A or B or C"
         comp4 = "A and (B != C)"
 
         components = [comp1, comp2, comp3, comp4]
         position = [[0,0], [0,1], [1,0], [1,1]]
 
         self.page1 = Page1(components=components, position=position, parent=self.stackedWidget)
-        self.page2 = Page2(parent=self.stackedWidget)
+        self.page2 = Page2(parent=self.stackedWidget, components=components)
+
+        self.page2.setUseHardware.connect(self.toggleUseHardware)
 
         self.stackedWidget.addWidget(self.page1)
         self.stackedWidget.addWidget(self.page2)
@@ -181,12 +201,13 @@ class Projeto(QtWidgets.QWidget):
         self.btTo2 = QtWidgets.QPushButton(parent=self, text="Próximo")
         self.btTo2.clicked.connect(self.nextPage)
         self.Layout.addWidget(self.btTo2)
-        
-    @Slot(int)
-    def togglePage(self, page:int):
-        self.stackedWidget.setCurrentIndex(page)
-        print(self.stackedWidget.count())
 
+    @Slot(bool)
+    def toggleUseHardware(self, useHardware: bool):
+        self.useHardware = useHardware
+        pass
+
+    @Slot()
     def nextPage(self):
         c = self.stackedWidget.currentIndex()
         count = self.stackedWidget.count() - 1
@@ -197,6 +218,8 @@ class Projeto(QtWidgets.QWidget):
         else:
             c = 0
             self.stackedWidget.setCurrentIndex(c)
+
+        self.useHardware = self.stackedWidget.currentWidget().useHardware
 
         if c == count:
             self.btTo2.setText("Voltar")
@@ -212,7 +235,6 @@ class Projeto(QtWidgets.QWidget):
     @Slot(list)
     def updateSimulation(self, data: list):
         self.updateSignal.emit()
-        self.page1.updateSignal.emit()
         pass
 
     @Slot()

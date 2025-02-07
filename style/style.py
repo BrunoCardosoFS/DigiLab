@@ -62,6 +62,7 @@ def globalStyle(isDarkMode: bool):
             background: {variables["color1"]};
             border: none;
             border-radius: 5px;
+            padding-left: 5px;
         }}
 
         QComboBox:!enabled{{
@@ -84,15 +85,15 @@ def globalStyle(isDarkMode: bool):
 
             border-left-width: 1px;
             border-left-color: {variables["color3"]};
-            border-left-style: solid; /* just a single line */
-            border-top-right-radius: 3px; /* same radius as the QComboBox */
+            border-left-style: solid;
+            border-top-right-radius: 3px;
             border-bottom-right-radius: 3px;
         }}
 
         QComboBox::down-arrow {{
-            image: url({variables["img-down-arrow"]}); /* Substitua pelo caminho do ícone */
-            width: 20px; /* Largura da seta */
-            height: 20px; /* Altura da seta */
+            image: url({variables["img-down-arrow"]});
+            width: 20px;
+            height: 20px;
         }}
 
         QComboBox:item, QComboBox QAbstractItemView:item {{

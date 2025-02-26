@@ -16,7 +16,9 @@
 import sys
 import os
 from PySide6.QtWidgets import QApplication, QStyleFactory
-from PySide6.QtGui import QIcon, QPalette
+from PySide6.QtGui import QIcon
+
+from PySide6.QtCore import Qt
 
 from modules.tempsettings import TempSettings
 
@@ -28,8 +30,7 @@ if __name__ == "__main__":
     app.setWindowIcon(QIcon(":/images/icons/icon.ico"))
 
     # Checking if the system is in dark mode
-    windowColor = app.palette().color(QPalette.Window)
-    isDarkMode = False if windowColor.lightnessF() > 0.5 else True
+    isDarkMode = True if (app.styleHints().colorScheme() == Qt.ColorScheme.Dark) else False
 
     # Setting the initial settings
     TempSettings.set("isDarkModeSystem", isDarkMode)

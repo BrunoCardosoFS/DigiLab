@@ -11,6 +11,12 @@
     <file>light/down-arrow.svg</file>
     <file>dark/down-arrow.svg</file>
 
+    <file>light/arrow-rotate-left.svg</file>
+    <file>dark/arrow-rotate-left.svg</file>
+
+    <file>light/arrow-rotate-right.svg</file>
+    <file>dark/arrow-rotate-right.svg</file>
+
     <file>light/update.svg</file>
     <file>dark/update.svg</file>
 

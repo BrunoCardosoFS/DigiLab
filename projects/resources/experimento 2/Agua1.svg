@@ -1,0 +1,13 @@
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="b">
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0048c2;stop-opacity:1" offset=".55"/>
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#b" id="c" x1="245.566" y1="504.289" x2="660.158" y2="456.368" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g style="display:inline">
+        <path style="display:inline;fill:url(#c);stroke-width:40;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke" d="M245.73 160.406s15.205.284 31.937 1.09c16.732.805 44.962 15.259 58.812 35.214 13.851 19.956 20.953 46.894 27.241 84.656 6.288 37.762 14.139 104.335 18.218 225.164 4.079 120.828-5.802 377.602-5.802 377.602l279.666 1.027s-10.8-194.792-24.51-313.333c-13.711-118.54-31.523-189.966-62.346-253.733-30.823-63.768-70.547-104.324-102.066-128.81-31.52-24.485-72.286-50.202-117.406-60.634-29.552-6.832-74.875-5.01-74.875-5.01l-29.033-.099Z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>

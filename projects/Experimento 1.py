@@ -398,9 +398,9 @@ class Page2(QtWidgets.QWidget):
         componentsItems = ["Hardware"]
 
         for i in range(len(components)):
-            componentsItems.append(f"Componente {i+1}")
+            componentsItems.append(f"Circuito {i+1}")
 
-        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um componente")
+        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um Circuito")
         self.ComboBox.addItems(componentsItems)
         self.ComboBox.setFixedHeight(32)
         self.ComboBox.setCursor(QtCore.Qt.PointingHandCursor)
@@ -434,6 +434,8 @@ class Page2(QtWidgets.QWidget):
 
             O = eval(self.components[self.ComboBox.currentIndex()-1])
             self.imageON.show() if O else self.imageON.hide()
+        elif self.ComboBox.currentIndex() == 0:
+            self.imageON.show() if data[0] else self.imageON.hide()
 
 class Page3(QtWidgets.QWidget):
     setUseHardware = QtCore.Signal(bool)
@@ -479,9 +481,9 @@ class Page3(QtWidgets.QWidget):
         componentsItems = ["Hardware"]
 
         for i in range(len(components)):
-            componentsItems.append(f"Componente {i+1}")
+            componentsItems.append(f"Circuito {i+1}")
 
-        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um componente")
+        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um Circuito")
         self.ComboBox.addItems(componentsItems)
         self.ComboBox.setFixedHeight(32)
         self.ComboBox.setCursor(QtCore.Qt.PointingHandCursor)
@@ -514,11 +516,17 @@ class Page3(QtWidgets.QWidget):
 
             O = eval(self.components[self.ComboBox.currentIndex()-1])
             self.imageON.show() if O else self.imageON.hide()
+        elif self.ComboBox.currentIndex() == 0:
+            self.imageON.show() if data[0] else self.imageON.hide()
 
 class Page4(QtWidgets.QWidget):
     setUseHardware = QtCore.Signal(bool)
     def __init__(self, parent: QtWidgets.QWidget = None, components: list = []):
         super().__init__(parent)
+
+        self.setStyleSheet("""
+            #saidaLed{border-radius: 10px;}
+        """)
 
         self.useHardware = False
         self.components = components
@@ -547,15 +555,21 @@ class Page4(QtWidgets.QWidget):
         self.btnB.clicked.connect(lambda: self.setEnt(1))
         self.btnC.clicked.connect(lambda: self.setEnt(2))
 
+        self.saidaLed = QtWidgets.QFrame(parent=self.image)
+        self.saidaLed.setObjectName("saidaLed")
+        self.saidaLed.setFixedSize(20, 20)
+        self.saidaLed.setStyleSheet("background-color: #b0b0b0;")
+        self.saidaLed.move(105, 248)
+
         self.btnEnts = [self.btnA, self.btnB, self.btnC]
         self.Ents = [False, False, False]
 
         componentsItems = ["Hardware"]
 
         for i in range(len(components)):
-            componentsItems.append(f"Componente {i+1}")
+            componentsItems.append(f"Circuito {i+1}")
 
-        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um componente")
+        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um Circuito")
         self.ComboBox.addItems(componentsItems)
         self.ComboBox.setFixedHeight(32)
         self.ComboBox.setCursor(QtCore.Qt.PointingHandCursor)
@@ -581,8 +595,22 @@ class Page4(QtWidgets.QWidget):
 
     @QtCore.Slot(list)
     def updateSimulation(self, data: list):
-        # print(f"Data Page 4: {data}")
-        return
+        if self.ComboBox.currentIndex() > 0:
+            A = self.Ents[0]
+            B = self.Ents[1]
+            C = self.Ents[2]
+
+            O = eval(self.components[self.ComboBox.currentIndex()-1])
+
+            if O:
+                self.saidaLed.setStyleSheet("background-color: green;")
+            else:
+                self.saidaLed.setStyleSheet("background-color: #b0b0b0;")
+        elif self.ComboBox.currentIndex() == 0:
+            if data[0]:
+                self.saidaLed.setStyleSheet("background-color: green;")
+            else:
+                self.saidaLed.setStyleSheet("background-color: #b0b0b0;")
 
 class Page5(QtWidgets.QWidget):
     setUseHardware = QtCore.Signal(bool)
@@ -636,9 +664,9 @@ class Page5(QtWidgets.QWidget):
         componentsItems = ["Hardware"]
 
         for i in range(len(components)):
-            componentsItems.append(f"Componente {i+1}")
+            componentsItems.append(f"Circuito {i+1}")
 
-        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um componente")
+        self.ComboBox = QtWidgets.QComboBox(parent=self, placeholderText="Selecione um Circuito")
         self.ComboBox.addItems(componentsItems)
         self.ComboBox.setFixedHeight(32)
         self.ComboBox.setCursor(QtCore.Qt.PointingHandCursor)
@@ -677,6 +705,13 @@ class Page5(QtWidgets.QWidget):
             else:
                 self.image_PE.move(0, 0)
                 self.image_PD.move(0, 0)
+        elif self.ComboBox.currentIndex() == 0:
+            if data[0]:
+                self.image_PE.move(-45, 0)
+                self.image_PD.move(45, 0)
+            else:
+                self.image_PE.move(0, 0)
+                self.image_PD.move(0, 0)
 
 
 
@@ -697,9 +732,9 @@ class Projeto(QtWidgets.QWidget):
         self.stackedWidget = QtWidgets.QStackedWidget(self)
         self.Layout.addWidget(self.stackedWidget)
 
-        comp1 = "A and (B or C)"
-        comp2 = "A and not (B and C)"
-        comp3 = "(not A) and (not B) and (C)"
+        comp1 = "C or (A and (not B))"
+        comp2 = "not (A and B and C)"
+        comp3 = "(not A) and (not B) and C"
         comp4 = "A and (B != C)"
 
         components = [comp1, comp2, comp3, comp4]

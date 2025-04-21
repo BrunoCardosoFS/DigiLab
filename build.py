@@ -5,7 +5,6 @@ pyfile = os.path.abspath("./main.py")
 icon = os.path.abspath("./resources/icons/icon.ico")
 
 projects = os.path.abspath("./projects")
-
 copyright = os.path.abspath("./COPYING")
 
 compile_with_nuitka(

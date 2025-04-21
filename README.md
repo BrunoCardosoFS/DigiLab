@@ -6,7 +6,7 @@ O **Simulador Circuitos Digitais** é uma ferramenta interativa para simular os 
 - **Python:** 3.12.1 ou superior. Baixe a versão mais recente no [site do python](https://www.python.org/downloads/).
 
 ### Dependências
-- **Interface gráfica:** PySide6 (versão 6.8.1.1).
+- **Interface gráfica:** PySide6 (6.8+).
 
 ## Usando o programa
 

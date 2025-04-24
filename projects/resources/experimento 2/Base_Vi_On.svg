@@ -1,0 +1,21 @@
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient xlink:href="#a" id="c" x1="245.566" y1="504.289" x2="660.158" y2="456.368" gradientUnits="userSpaceOnUse" gradientTransform="translate(128.43 -80.682)"/>
+        <linearGradient id="a">
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0048c2;stop-opacity:1" offset=".55"/>
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="b">
+            <stop style="stop-color:#0d69ff;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0055e3;stop-opacity:1" offset=".525"/>
+            <stop style="stop-color:#005bef;stop-opacity:1" offset="1"/>
+        </linearGradient>
+    </defs>
+    <path style="fill:#000;fill-opacity:1;stroke-linecap:round;paint-order:markers fill stroke" d="M7.347 56.791a4.5 4.5 0 0 0-4.5 4.5v712.203a4.5 4.5 0 0 0 4.497 4.5l20.343.037c.732.001 1.395-.212 2.006-.521v34.504A7.968 7.968 0 0 0 37.68 820h274.076a7.968 7.968 0 0 0 7.986-7.986V778.03h39.338a4.5 4.5 0 0 0 0-9h-39.338v-33.98a7.968 7.968 0 0 0-7.986-7.987H245.92v-108.23h113.16a4.5 4.5 0 0 0 0-9H241.42a4.5 4.5 0 0 0-4.5 4.5v112.73h-53.506v-334.04H359.08a4.5 4.5 0 0 0 0-9H178.914a4.5 4.5 0 0 0-4.5 4.5v338.54h-60.322V170.114H359.08a4.5 4.5 0 0 0 0-9H109.592a4.5 4.5 0 0 0-4.5 4.5v561.45H37.68a7.968 7.968 0 0 0-7.987 7.986v34.504c-.608-.308-1.268-.521-1.996-.522l-15.85-.033V65.791H248.62a4.5 4.5 0 0 0 0-9z"/>
+    <path style="display:inline;fill:url(#c);stroke-width:40;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke" d="M374.16 79.724s15.205.284 31.937 1.09c16.732.805 44.962 15.26 58.813 35.215 13.85 19.956 20.952 46.894 27.24 84.656 6.288 37.762 14.139 104.335 18.218 225.163 4.079 120.828-5.801 377.602-5.801 377.602l279.665 1.027s-10.8-194.792-24.51-313.333c-13.71-118.54-31.523-189.966-62.346-253.733-30.822-63.767-70.547-104.324-102.066-128.81-31.52-24.485-72.286-50.202-117.406-60.633-29.552-6.833-74.875-5.01-74.875-5.01l-29.033-.1z"/>
+    <g transform="translate(-362.197 -135.55)">
+        <rect style="fill:#000;fill-opacity:1;stroke:none;stroke-width:3.87274;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" width="125.46" height="39.906" x="217.28" y="95.567" ry="6.129" transform="translate(393.535 81.321)"/>
+        <circle style="fill:#35e100;fill-opacity:1;stroke:#0d0d0d;stroke-width:.83942;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" cx="706.043" cy="197.408" r="7.451"/>
+    </g>
+</svg>

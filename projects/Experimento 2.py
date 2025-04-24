@@ -86,6 +86,28 @@ svg_sensor_3_on = """
 </svg>
 """
 
+svg_sensor_1_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke:#000;stroke-width:.666111;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="m273.955 684.006-15.306-3.57v25.908l15.306-3.57zm-15.306-6.123h-6.61v31.014h6.61z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>
+"""
+svg_sensor_2_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke:#000;stroke-width:.666111;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="m273.955 458.865-15.306-3.57v25.907l15.306-3.57zm-15.306-6.124h-6.61v31.014h6.61z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>
+"""
+svg_sensor_3_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke:#000;stroke-width:.666111;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="m273.955 233.723-15.306-3.57v25.908l15.306-3.57zM258.65 227.6h-6.61v31.014h6.61z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>
+"""
+
 svg_vout_0 = """
 <svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(274.205 602.638)" style="display:inline">
@@ -139,8 +161,19 @@ class Projeto(QtWidgets.QWidget):
         self.useHardware = False
         
         self.values = ["0","0","0","0","0","0","0","0","0","0"]
-
         self.valvOutNivel = 0
+
+        self.setStyleSheet("""
+            QPushButton#openValvOut {
+                qproperty-icon: url(:/images/light/arrow-rotate-left.svg);
+                padding: 7px 5px;
+            }
+                           
+            QPushButton#closeValvOut {
+                qproperty-icon: url(:/images/light/arrow-rotate-right.svg);
+                padding: 7px 5px;
+            }
+        """)
 
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
@@ -176,15 +209,15 @@ class Projeto(QtWidgets.QWidget):
         self.imageTanque.setFixedSize(self.imageWidth, self.imageHeight)
 
         self.imageSensor1 = QSvgWidget(parent=self.imageBase)
-        self.imageSensor1.renderer().load(svg_sensor_1_on.encode("utf-8"))
+        self.imageSensor1.renderer().load(svg_sensor_1_off.encode("utf-8"))
         self.imageSensor1.setFixedSize(self.imageWidth, self.imageHeight)
 
         self.imageSensor2 = QSvgWidget(parent=self.imageBase)
-        self.imageSensor2.renderer().load(svg_sensor_2_on.encode("utf-8"))
+        self.imageSensor2.renderer().load(svg_sensor_2_off.encode("utf-8"))
         self.imageSensor2.setFixedSize(self.imageWidth, self.imageHeight)
 
         self.imageSensor3 = QSvgWidget(parent=self.imageBase)
-        self.imageSensor3.renderer().load(svg_sensor_3_on.encode("utf-8"))
+        self.imageSensor3.renderer().load(svg_sensor_3_off.encode("utf-8"))
         self.imageSensor3.setFixedSize(self.imageWidth, self.imageHeight)
 
         self.imagesValvOut = [svg_vout_0, svg_vout_1, svg_vout_2, svg_vout_3]
@@ -218,36 +251,49 @@ class Projeto(QtWidgets.QWidget):
         self.btnCloseValvOut.move(567, 420)
         self.btnCloseValvOut.clicked.connect(self.closeValvOut)
 
+        self.selectSimulationMode = QtWidgets.QComboBox(self.imageBase)
+        self.selectSimulationMode.setObjectName("selectSimulationMode")
+        self.selectSimulationMode.setCursor(QtCore.Qt.PointingHandCursor)
+        self.selectSimulationMode.currentIndexChanged.connect(self.simulationMode)
+        self.selectSimulationMode.setFixedSize(150, 30)
+        self.selectSimulationMode.move(30, 448)
 
-        self.setStyleSheet("""
-            QPushButton#openValvOut {
-                qproperty-icon: url(:/images/light/arrow-rotate-left.svg);
-                padding: 7px 5px;
-            }
-                           
-            QPushButton#closeValvOut {
-                qproperty-icon: url(:/images/light/arrow-rotate-right.svg);
-                padding: 7px 5px;
-            }
-        """)
+        self.selectSimulationMode.setPlaceholderText("Modo de simulação")
+        self.selectSimulationMode.addItem("Circuito de Joãozinho")
+        self.selectSimulationMode.addItem("Circuito externo")
 
 
         self.Layout.addWidget(self.imageBase)
 
-    def getIsOpen(self):
-        A = int(self.values[0])
-        B = int(self.values[1])
-        C = int(self.values[2])
-        D = int(self.values[3])
+    @Slot()
+    def getIsOpen(self, data: list):
+        if self.useHardware:
+            return int(data[0])
+        else:
+            A = int(self.values[0])
+            B = int(self.values[1])
+            C = int(self.values[2])
+            D = int(self.values[3])
 
-        return 1
+            out = True
+
+            return out
     
+    @Slot()
+    def simulationMode(self, index: int):
+        if index == 0:
+            self.useHardware = False
+            return
+        
+        self.useHardware = True
+
     @Slot()
     def openValvOut(self):
         nivel = self.valvOutNivel + 1
         if nivel <= 3:
             self.valvOutNivel = nivel
             self.imageVOut.renderer().load(self.imagesValvOut[nivel].encode("utf-8"))
+            self.values[3] = "1"
 
     @Slot()
     def closeValvOut(self):
@@ -256,30 +302,51 @@ class Projeto(QtWidgets.QWidget):
             self.valvOutNivel = nivel
             self.imageVOut.renderer().load(self.imagesValvOut[nivel].encode("utf-8"))
 
+        if nivel <= 0:
+            self.values[3] = "0"
+        else:
+            self.values[3] = "1"
+
     @Slot()
     def resetSimulation(self):
-        self.nivelAgua = 0
-        self.nivelaguaHeight = 0
-        self.nivelAguaY = self.yAgua + self.heightAgua
+        self.selectSimulationMode.setDisabled(False)
+        # self.nivelAgua = 0
+        # self.nivelaguaHeight = 0
+        # self.nivelAguaY = self.yAgua + self.heightAgua
 
-        self.imageAgua.setFixedSize(self.widthAgua, self.nivelaguaHeight)
-        self.imageAgua.move(self.xAgua, self.nivelAguaY)
+        # self.imageAgua.setFixedSize(self.widthAgua, self.nivelaguaHeight)
+        # self.imageAgua.move(self.xAgua, self.nivelAguaY)
+        return
 
     @Slot(list)
     def updateSimulation(self, data: list):
-        isInOpen = int(data[0]) if self.useHardware else self.getIsOpen()
+        self.selectSimulationMode.setDisabled(True)
 
+        isInOpen = int(data[0]) if self.useHardware else self.getIsOpen(data)
         nivelAgua = self.nivelAgua + (isInOpen - (self.valvOutNivel*2/3))*0.5
 
-        if (nivelAgua >= 0 and nivelAgua <= 106):
+        if 0 <= nivelAgua <= 106:
             self.nivelAgua = nivelAgua
             self.nivelaguaHeight = int(self.heightAgua * self.nivelAgua / 100)
-            self.nivelAguaY = self.yAgua + self.heightAgua*(1 - self.nivelAgua/100)
+            self.nivelAguaY = self.yAgua + self.heightAgua * (1 - self.nivelAgua / 100)
 
             self.imageAgua.setFixedSize(self.widthAgua, self.nivelaguaHeight)
             self.imageAgua.move(self.xAgua, self.nivelAguaY)
-        elif (nivelAgua > 100):
+        elif nivelAgua > 106:
             print("Transbordou")
+
+        sensor_thresholds = [25, 56, 87]
+        sensor_images_on = [svg_sensor_1_on, svg_sensor_2_on, svg_sensor_3_on]
+        sensor_images_off = [svg_sensor_1_off, svg_sensor_2_off, svg_sensor_3_off]
+        sensors = [self.imageSensor1, self.imageSensor2, self.imageSensor3]
+
+        for i, threshold in enumerate(sensor_thresholds):
+            if self.nivelAgua > threshold:
+                sensors[i].renderer().load(sensor_images_on[i].encode("utf-8"))
+                self.values[i] = "1"
+            else:
+                sensors[i].renderer().load(sensor_images_off[i].encode("utf-8"))
+                self.values[i] = "0"
 
     @Slot()
     def getValues(self):

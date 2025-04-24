@@ -28,7 +28,7 @@ class LeftMenu(QtWidgets.QWidget):
         self.setLayout(self.Layout)
 
         #QSettings
-        self.settings = QtCore.QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
+        self.settings = QtCore.QSettings("DigiLab", "Simulador")
         isDarkMode = self.settings.value("darkMode", defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
         # Title

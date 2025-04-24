@@ -26,8 +26,8 @@ class CentralWidget(QtWidgets.QWidget):
 
         self.useHardware = False
 
-        self.settings = QSettings("BrunoCardoso", "SimuladorCircuitosDigitais")
-        self.isDarkMode = self.settings.value("darkMode",defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
+        self.settings = QSettings("DigiLab", "Simulador")
+        self.isDarkMode = self.settings.value("darkMode", defaultValue=TempSettings.get("isDarkModeSystem"), type=bool)
 
         self.setStyleSheet(globalStyle(self.isDarkMode))
 
@@ -246,7 +246,7 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
 
         # Defining window parameters
-        self.setWindowTitle("Simulador Circuitos Digitais")
+        self.setWindowTitle("DigiLab Simulador")
         self.setMinimumWidth(800)
         self.setMinimumHeight(500)
         self.setWindowIcon(QIcon(":/images/icons/icon.ico"))

@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Qt, Slot, Signal
+from PySide6.QtSvgWidgets import QSvgWidget
 
 from modules.tempsettings import TempSettings
 
@@ -104,9 +105,10 @@ class LeftMenu(QtWidgets.QWidget):
 
 
         # Logo
-        logoBottomPixmap = QtGui.QPixmap(":/images/icons/icon_dark.svg" if isDarkMode else ":/images/icons/icon_light.svg").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        self.logoBottom = QtWidgets.QLabel(alignment=QtCore.Qt.AlignCenter, text="")
-        self.logoBottom.setPixmap(logoBottomPixmap)
+        self.logoWidget = QtWidgets.QWidget(self)
+
+        self.logoBottom = QSvgWidget(":/images/icons/icon_dark.svg" if isDarkMode else ":/images/icons/icon_light.svg", parent=self)
+        self.logoBottom.setFixedSize(120, 120)
 
         # Footer Bar
         self.footerBar = QtWidgets.QWidget(self)
@@ -146,6 +148,7 @@ class LeftMenu(QtWidgets.QWidget):
         self.Layout.addWidget(self.SimulationControls)
         self.Layout.addItem(self.spacer1)
         self.Layout.addWidget(self.logoBottom)
+        self.Layout.setAlignment(self.logoBottom, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.Layout.addItem(self.spacer2)
         self.Layout.addWidget(self.footerBar)
 
@@ -202,4 +205,4 @@ class LeftMenu(QtWidgets.QWidget):
         self.btnUpdateDevices.setIcon(QtGui.QIcon(f":/images/{theme}/update.svg"))
         self.btnDarkMode.setIcon(QtGui.QIcon(f":/images/{theme}/theme.svg"))
         self.btnSettings.setIcon(QtGui.QIcon(f":/images/{theme}/settings.svg"))
-        self.logoBottom.setPixmap(QtGui.QPixmap(f":/images/icons/icon_{theme}.svg").scaled(100, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        self.logoBottom.load(f":/images/icons/icon_{theme}.svg")

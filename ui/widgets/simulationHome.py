@@ -12,13 +12,12 @@ class Projeto(QtWidgets.QWidget):
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
 
-        self.svg = QSvgWidget(parent=self)
-        self.svg.setFixedSize(0,0)
+        self.svg = QSvgWidget(":/images/icons/icon-text.svg", parent=self)
+        fwidget = 500
+        fheight = int(fwidget * (307/1132))
+        self.svg.setFixedSize(fwidget, fheight)
 
-        logoPixmap = QtGui.QPixmap(":/images/icons/icon.svg").scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        self.label = QtWidgets.QLabel(parent=self, text="", pixmap=logoPixmap)
-
-        self.Layout.addWidget(self.label)
+        self.Layout.addWidget(self.svg)
 
     @Slot()
     def resetSimulation(self):

@@ -1,0 +1,20 @@
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="b">
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0048c2;stop-opacity:1" offset=".55"/>
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop style="stop-color:#0d69ff;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0055e3;stop-opacity:1" offset=".525"/>
+            <stop style="stop-color:#005bef;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="d" x1="249.135" y1="523.474" x2="752.557" y2="523.474" gradientUnits="userSpaceOnUse"/>
+        <linearGradient xlink:href="#b" id="c" x1="245.566" y1="504.289" x2="660.158" y2="456.368" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -528.643)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -528.643)"/>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="b">
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0048c2;stop-opacity:1" offset=".55"/>
+            <stop style="stop-color:#0057e7;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop style="stop-color:#0d69ff;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#0055e3;stop-opacity:1" offset=".525"/>
+            <stop style="stop-color:#005bef;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="d" x1="249.135" y1="523.474" x2="752.557" y2="523.474" gradientUnits="userSpaceOnUse"/>
+        <linearGradient xlink:href="#b" id="c" x1="245.566" y1="504.289" x2="660.158" y2="456.368" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke:#000;stroke-width:.666111;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="m273.955 684.006-15.306-3.57v25.908l15.306-3.57zm-15.306-6.123h-6.61v31.014h6.61z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>

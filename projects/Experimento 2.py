@@ -108,6 +108,57 @@ svg_sensor_3_off = """
 </svg>
 """
 
+svg_sensor_1_q_on = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#35e100;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -78.36)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>
+"""
+svg_sensor_2_q_on = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#35e100;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -303.5)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -303.5)"/>
+    </g>
+</svg>
+"""
+svg_sensor_3_q_on = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#35e100;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -528.643)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -528.643)"/>
+    </g>
+</svg>
+"""
+
+svg_sensor_1_q_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -78.36)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -78.36)"/>
+    </g>
+</svg>
+"""
+svg_sensor_2_q_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -303.5)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -303.5)"/>
+    </g>
+</svg>
+"""
+svg_sensor_3_q_off = """
+<svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <path style="display:inline;fill:#5e5e5e;fill-opacity:1;stroke-linecap:round;paint-order:markers fill stroke" d="M252.04 677.883v2.26l.982.91.336.146 2.676 1.164 2.615-3.781v-.7zm6.836 2.605-1.654 2.39 2.582 1.122.127.057.091.101 4.217 4.695 1.733 1.762.543-1.732-.006-.002 1.863-6.178zm-6.836 1.385v7.754l1.887-.711-1.354-6.57-.01.011zm1.934.977 1.252 6.08 12.527 5.3-8.584-9.123zm15.634.142-2.664 8.615.924.971 6.088-3.922v-4.65zm-15.054 7.041-2.514.947v10.782l9.518-5.448 3.197-2.261-2.569-1.153-.002.008-3.898-1.47-.273-.078-.157-.082zm19.402.367-3.096 2.084-.93.713 4.026 2.508zm-5.78 3.225-.859 9.264.909 1.22 5.73-1.336V697.2l-2.924-1.822zm-2.331.92-5.082 3.69-4.452 2.544 3.954 5.188 6.615-1.543-.723-.973-.14-.191.017-.239.918-8.107zm-10.645 6.87-3.16 1.808v5.673h6.61v-2.552l.261-.06z" transform="translate(122.04 -528.643)"/>
+        <path style="display:inline;stroke-linecap:round;paint-order:markers fill stroke" d="M251.705 677.55v31.68h7.277v-2.623l15.307-3.57v-19.295l-15.307-3.57v-2.621zm.668.667h5.943v30.347h-5.943zm6.61 2.638 14.64 3.415v18.24l-14.64 3.414z" transform="translate(122.04 -528.643)"/>
+    </g>
+</svg>
+"""
+
+
 svg_vout_0 = """
 <svg width="1000" height="820" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <g transform="translate(274.205 602.638)" style="display:inline">
@@ -229,15 +280,27 @@ class Projeto(QtWidgets.QWidget):
 
         self.Sensor1 = QtWidgets.QPushButton("A: Funcional", self.imageBase)
         self.Sensor1.setCursor(QtCore.Qt.PointingHandCursor)
-        self.Sensor1.move(133, 67)
+        self.Sensor1.move(133, 335)
+        self.Sensor1.clicked.connect(lambda: self.toggleSensorMode(0))
 
         self.Sensor2 = QtWidgets.QPushButton("B: Funcional", self.imageBase)
         self.Sensor2.setCursor(QtCore.Qt.PointingHandCursor)
         self.Sensor2.move(133, 200)
+        self.Sensor2.clicked.connect(lambda: self.toggleSensorMode(1))
 
         self.Sensor3 = QtWidgets.QPushButton("C: Funcional", self.imageBase)
         self.Sensor3.setCursor(QtCore.Qt.PointingHandCursor)
-        self.Sensor3.move(133, 335)
+        self.Sensor3.move(133, 67)
+        self.Sensor3.clicked.connect(lambda: self.toggleSensorMode(2))
+        
+        self.svgSensorsOn = [svg_sensor_1_on, svg_sensor_2_on, svg_sensor_3_on]
+        self.svgSensorsOff = [svg_sensor_1_off, svg_sensor_2_off, svg_sensor_3_off]
+        self.svgSensorsQOn = [svg_sensor_1_q_on, svg_sensor_2_q_on, svg_sensor_3_q_on]
+        self.svgSensorsQOff = [svg_sensor_1_q_off, svg_sensor_2_q_off, svg_sensor_3_q_off]
+
+        self.sensors = [self.imageSensor1, self.imageSensor2, self.imageSensor3]
+        self.sensorButtons = [self.Sensor1, self.Sensor2, self.Sensor3]
+        self.sensorMode = [0, 0, 0]
 
         self.btnOpenValvOut = QtWidgets.QPushButton(self.imageBase)
         self.btnOpenValvOut.setObjectName("openValvOut")
@@ -262,8 +325,31 @@ class Projeto(QtWidgets.QWidget):
         self.selectSimulationMode.addItem("Circuito de Joãozinho")
         self.selectSimulationMode.addItem("Circuito externo")
 
+        self.selectSimulationMode.setCurrentIndex(0)
+
 
         self.Layout.addWidget(self.imageBase)
+
+    @Slot()
+    def toggleSensorMode(self, sensor: int):
+        mode = (self.sensorMode[sensor] + 1) % 3
+        self.sensorMode[sensor] = mode
+        
+        sensorLetra = ["A", "B", "C"]
+        modeTexts = ["Funcional", "On", "Off"]
+        modeValues = ["1", "1", "0"]
+        modeSvgs = [self.svgSensorsOn, self.svgSensorsQOn, self.svgSensorsQOff]
+
+        self.sensorButtons[sensor].setText(f"{sensorLetra[sensor]}: {modeTexts[mode]}")
+        self.values[sensor] = modeValues[mode]
+
+        if mode == 0:
+            svg = self.svgSensorsOn[sensor] if self.values[sensor] == "1" else self.svgSensorsOff[sensor]
+        else:
+            svg = modeSvgs[mode][sensor]
+
+        self.sensors[sensor].renderer().load(svg.encode("utf-8"))
+
 
     @Slot()
     def getIsOpen(self, data: list):
@@ -275,7 +361,8 @@ class Projeto(QtWidgets.QWidget):
             C = int(self.values[2])
             D = int(self.values[3])
 
-            out = True
+            out = ((not C) and D) or not A
+            # out = ((not C) and (not B) and (not A)) or ((not C) and A and D)
 
             return out
     
@@ -342,11 +429,13 @@ class Projeto(QtWidgets.QWidget):
 
         for i, threshold in enumerate(sensor_thresholds):
             if self.nivelAgua > threshold:
-                sensors[i].renderer().load(sensor_images_on[i].encode("utf-8"))
-                self.values[i] = "1"
+                if self.sensorMode[i] == 0:
+                    sensors[i].renderer().load(sensor_images_on[i].encode("utf-8"))
+                    self.values[i] = "1"
             else:
-                sensors[i].renderer().load(sensor_images_off[i].encode("utf-8"))
-                self.values[i] = "0"
+                if self.sensorMode[i] == 0:
+                    sensors[i].renderer().load(sensor_images_off[i].encode("utf-8"))
+                    self.values[i] = "0"
 
     @Slot()
     def getValues(self):

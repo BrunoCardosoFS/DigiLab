@@ -11,7 +11,7 @@ compile_with_nuitka(
     pyfile=pyfile,
     product_name="Simulador Circuitos Digitais",
     output_filename="DigiLab",
-    file_version="0.0.1.5",
+    file_version="0.0.1.6",
     file_description="Simulador Circuitos Digitais",
     copyright="Copyright 2024 Bruno Cardoso",
     icon=icon,

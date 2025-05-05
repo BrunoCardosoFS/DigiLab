@@ -1,0 +1,25 @@
+<svg width="1350" height="850" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="b">
+            <stop style="stop-color:#e40202;stop-opacity:.54182273" offset="0"/>
+            <stop style="stop-color:#e40202;stop-opacity:0" offset="1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop style="stop-color:#97a26c;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#deb111;stop-opacity:1" offset=".204"/>
+            <stop style="stop-color:#f2001d;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="c" x1="5.25" y1="97.387" x2="112.68" y2="28.84" gradientUnits="userSpaceOnUse"/>
+        <radialGradient xlink:href="#b" id="d" cx="379.167" cy="701.815" fx="379.167" fy="701.815" r="75.01" gradientTransform="matrix(1 0 0 1.09451 2.744 -29.74)" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g transform="matrix(.08706 0 0 .08823 498.708 574.132)" style="display:inline">
+        <ellipse style="display:inline;fill:#8d4829;fill-opacity:1;stroke:none;stroke-width:50.1499;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" cx="255.321" cy="489.298" rx="269.147" ry="89.138"/>
+        <path style="fill:#2f0909;fill-opacity:1" d="M256.018 363.545H72.109V-10.046c0-39.741 32.224-71.965 71.965-71.965h223.889c39.741 0 71.965 32.224 71.965 71.965v373.591Z"/>
+        <path style="fill:#9da1a4" d="M8.14 491.482v-47.977h495.756v47.977z"/>
+        <path style="fill:#c3c7c9" d="M256.018 363.545h215.894v79.96H40.125v-79.96h31.984z"/>
+        <path style="fill:#210404;fill-opacity:1" d="M232.029-82.01h-87.957c-39.741 0-71.965 32.224-71.965 71.965v373.591h87.957V-10.046c.002-39.741 32.226-71.964 71.965-71.964z"/>
+        <path style="fill:#9da1a4" d="M40.126 363.549h431.791v39.98H40.126z"/>
+        <path d="M480.016 435.784v-79.961h-31.984V-9.645c0-44.16-35.927-80.086-80.088-80.086H144.055c-44.159 0-80.086 35.926-80.086 80.086v365.469H31.984v79.961H0v64.221h512v-64.221h-31.984ZM80.214-9.645c0-35.202 28.64-63.841 63.841-63.841h223.889c35.203 0 63.842 28.64 63.842 63.841v365.469H80.214ZM48.229 372.069h415.542v63.715H48.229Zm447.526 111.692H16.245v-31.73h479.509v31.73z"/>
+        <path style="fill:#fff;fill-opacity:.738883;stroke:none;stroke-width:23.9278;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M112.643 37.573h15.095v221.372h-15.095z"/>
+    </g>
+</svg>

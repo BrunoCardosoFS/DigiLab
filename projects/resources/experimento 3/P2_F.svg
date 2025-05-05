@@ -1,0 +1,30 @@
+<svg width="1350" height="850" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="b">
+            <stop style="stop-color:#e40202;stop-opacity:.54182273" offset="0"/>
+            <stop style="stop-color:#e40202;stop-opacity:0" offset="1"/>
+        </linearGradient>
+        <linearGradient id="a">
+            <stop style="stop-color:#97a26c;stop-opacity:1" offset="0"/>
+            <stop style="stop-color:#deb111;stop-opacity:1" offset=".204"/>
+            <stop style="stop-color:#f2001d;stop-opacity:1" offset="1"/>
+        </linearGradient>
+        <linearGradient xlink:href="#a" id="c" x1="5.25" y1="97.387" x2="112.68" y2="28.84" gradientUnits="userSpaceOnUse"/>
+        <radialGradient xlink:href="#b" id="d" cx="379.167" cy="701.815" fx="379.167" fy="701.815" r="75.01" gradientTransform="matrix(1 0 0 1.09451 2.744 -29.74)" gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g style="display:inline">
+        <g style="display:inline;opacity:1;fill:none">
+            <path style="opacity:1;fill:#191525;stroke-width:3.225;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke" d="M511.966 337.504a6.953 11.3 0 0 0-6.954 11.3 6.953 11.3 0 0 0 6.954 11.298 6.953 11.3 0 0 0 6.955-11.299 6.953 11.3 0 0 0-6.955-11.299zm47.705.627a6.468 10.511 0 0 0-6.47 10.51 6.468 10.511 0 0 0 6.47 10.512 6.468 10.511 0 0 0 6.468-10.512 6.468 10.511 0 0 0-6.468-10.51z" transform="translate(146.507 -46.49)"/>
+            <path style="opacity:1;fill:none;fill-opacity:1;stroke:#000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M542.933 347.51c5.305 17.138 12.921 17.509 11.077 23.609-2.477 7.67-9.817 8.744-19.89 5.821" transform="translate(146.507 -46.49)"/>
+            <path style="display:inline;opacity:1;fill:#fff;fill-opacity:1;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M510.355 389.967c7.14 14.8 32.055 22.662 45.88 4.857 2.066-2.91 2.106-6.388-2.682-5.582-11.829 2.706-29.327-.479-40.529-3.984-4.703-1.63-4.339 1.412-2.67 4.709z" transform="translate(146.507 -46.49)"/>
+            <path style="opacity:1;fill:none;fill-opacity:1;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M552.97 319.822c7.694-4.416 14.32-4.054 20.582 2.744" transform="translate(146.507 -46.49)"/>
+            <path style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" d="M494.083 329.427c5.405-7.855 15.025-13.215 27.557-7.318" transform="translate(146.507 -46.49)"/>
+            <g transform="matrix(.16797 0 0 .16797 628.96 43.762)" style="display:inline">
+                <circle style="fill:#f7b239" cx="256.004" cy="256.004" r="256.004"/>
+                <path style="fill:#e09b2d" d="M121.499 390.501C29.407 298.407 22.15 153.608 99.723 53.204A258.273 258.273 0 0 0 74.98 74.981c-99.974 99.974-99.974 262.065 0 362.038 99.974 99.973 262.065 99.974 362.038 0a258.428 258.428 0 0 0 21.777-24.743c-100.403 77.574-245.202 70.317-337.296-21.775z"/>
+                <path style="fill:#e09b2d" d="M256.001 406.199a168.442 168.442 0 0 1-45.475-6.255c-5.045-1.414-7.989-6.652-6.575-11.699 1.414-5.045 6.652-7.992 11.698-6.575a149.455 149.455 0 0 0 80.706 0c5.049-1.412 10.283 1.53 11.698 6.575 1.414 5.045-1.53 10.283-6.575 11.698a168.446 168.446 0 0 1-45.477 6.256z"/>
+                <path style="fill:#4d4d4d" d="M384.701 297.195c-70.969 70.966-186.441 70.964-257.402 0a9.49 9.49 0 0 0-13.42 0c-3.706 3.706-3.706 9.714 0 13.418C153.067 349.8 204.524 369.387 256 369.387c51.463 0 102.942-19.596 142.121-58.774 3.706-3.706 3.706-9.714 0-13.418-3.706-3.705-9.713-3.707-13.42 0zM142.674 231.083c19.358 0 35.107-15.749 35.107-35.107 0-19.358-15.749-35.107-35.107-35.107-19.358 0-35.107 15.749-35.107 35.107 0 19.358 15.749 35.107 35.107 35.107zM369.326 160.87c-19.358 0-35.107 15.749-35.107 35.107 0 19.358 15.749 35.107 35.107 35.107 19.358 0 35.107-15.749 35.107-35.107 0-19.358-15.749-35.107-35.107-35.107z"/>
+            </g>
+        </g>
+    </g>
+</svg>

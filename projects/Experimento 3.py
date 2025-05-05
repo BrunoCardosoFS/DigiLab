@@ -556,7 +556,7 @@ class Projeto(QtWidgets.QWidget):
         self.Layout = QtWidgets.QVBoxLayout(self)
         self.Layout.setContentsMargins(0, 0, 0, 0)
 
-        self.widthImage = 600
+        self.widthImage = 700
         self.heightImage = self.widthImage * (17/27)
 
         self.imageBase = QSvgWidget(parent=self)
@@ -588,27 +588,27 @@ class Projeto(QtWidgets.QWidget):
         self.imageS.setFixedSize(self.widthImage, self.heightImage)
 
         self.btnA = QtWidgets.QPushButton("A: off", self.imageBase)
-        self.btnA.move(265, 315)
+        self.btnA.move(317, 370)
         self.btnA.setCursor(Qt.PointingHandCursor)
         self.btnA.clicked.connect(lambda: self.updateFruit(0, not int(self.values[0])))
 
         self.btnB = QtWidgets.QPushButton("B: off", self.imageBase)
-        self.btnB.move(333, 315)
+        self.btnB.move(395, 370)
         self.btnB.setCursor(Qt.PointingHandCursor)
         self.btnB.clicked.connect(lambda: self.updateFruit(1, not int(self.values[1])))
 
         self.btnC = QtWidgets.QPushButton("C: off", self.imageBase)
-        self.btnC.move(401, 315)
+        self.btnC.move(473, 370)
         self.btnC.setCursor(Qt.PointingHandCursor)
         self.btnC.clicked.connect(lambda: self.updateFruit(2, not int(self.values[2])))
 
         self.btnD = QtWidgets.QPushButton("D: off", self.imageBase)
-        self.btnD.move(469, 315)
+        self.btnD.move(551, 370)
         self.btnD.setCursor(Qt.PointingHandCursor)
         self.btnD.clicked.connect(lambda: self.updateFruit(3, not int(self.values[3])))
 
         self.btnE = QtWidgets.QPushButton("E: off", self.imageBase)
-        self.btnE.move(537, 315)
+        self.btnE.move(629, 370)
         self.btnE.setCursor(Qt.PointingHandCursor)
         self.btnE.clicked.connect(lambda: self.updateFruit(4, not int(self.values[4])))
 

@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt, Slot, QSettings, QByteArray, QTimer
 from PySide6.QtGui import QIcon, QCloseEvent
 from PySide6.QtSerialPort import QSerialPort
 
-from style.style import globalStyle
+from ui.styles.style import globalStyle
 
 from modules.tempsettings import TempSettings
 from modules.backend.projects import getProjects

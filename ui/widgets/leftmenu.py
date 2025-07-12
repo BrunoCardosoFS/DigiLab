@@ -124,17 +124,17 @@ class LeftMenu(QtWidgets.QWidget):
         self.btnDarkMode.setCursor(QtCore.Qt.PointingHandCursor)
         self.btnDarkMode.setIconSize(QtCore.QSize(24, 24))
         self.btnDarkMode.setFixedSize(30, 30)
-
         self.btnDarkMode.clicked.connect(self.updateDarkMode)
-
-        btnSettingsIcon = QtGui.QIcon(":/images/dark/settings.svg" if isDarkMode else ":/images/light/settings.svg")
-        self.btnSettings = QtWidgets.QPushButton(parent=self.footerBar, icon=btnSettingsIcon, text="")
-        self.btnSettings.setCursor(QtCore.Qt.PointingHandCursor)
-        self.btnSettings.setIconSize(QtCore.QSize(24, 24))
-        self.btnSettings.setFixedSize(30, 30)
-
         self.footerBarLayout.addWidget(self.btnDarkMode)
-        self.footerBarLayout.addWidget(self.btnSettings)
+
+        # btnSettingsIcon = QtGui.QIcon(":/images/dark/settings.svg" if isDarkMode else ":/images/light/settings.svg")
+        # self.btnSettings = QtWidgets.QPushButton(parent=self.footerBar, icon=btnSettingsIcon, text="")
+        # self.btnSettings.setCursor(QtCore.Qt.PointingHandCursor)
+        # self.btnSettings.setIconSize(QtCore.QSize(24, 24))
+        # self.btnSettings.setFixedSize(30, 30)
+        # self.footerBarLayout.addWidget(self.btnSettings)
+
+        
 
         # Spacer
         self.spacer1 = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -204,5 +204,5 @@ class LeftMenu(QtWidgets.QWidget):
 
         self.btnUpdateDevices.setIcon(QtGui.QIcon(f":/images/{theme}/update.svg"))
         self.btnDarkMode.setIcon(QtGui.QIcon(f":/images/{theme}/theme.svg"))
-        self.btnSettings.setIcon(QtGui.QIcon(f":/images/{theme}/settings.svg"))
+        # self.btnSettings.setIcon(QtGui.QIcon(f":/images/{theme}/settings.svg"))
         self.logoBottom.load(f":/images/icons/icon_{theme}.svg")

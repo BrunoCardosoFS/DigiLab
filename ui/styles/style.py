@@ -1,4 +1,4 @@
-from style.themes import lightMode, darkMode
+from ui.styles.themes import lightMode, darkMode
 
 def globalStyle(isDarkMode: bool):
     variables = darkMode if (isDarkMode) else lightMode
@@ -6,9 +6,7 @@ def globalStyle(isDarkMode: bool):
     scrollAreaStyle = f"""
         QGraphicsView {{
             border: none;
-            border-radius: 10px;
             background-color: {variables["bg2"]};
-            margin: 20px;
         }}
 
         QScrollBar:vertical {{

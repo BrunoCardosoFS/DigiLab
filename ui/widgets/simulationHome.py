@@ -1,6 +1,7 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Slot, Qt
-from PySide6.QtSvgWidgets import QSvgWidget
+from PySide6.QtSvgWidgets import QSvgWidget, QGraphicsSvgItem
+import math
 
 
 class Projeto(QtWidgets.QWidget):

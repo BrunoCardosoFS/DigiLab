@@ -4,8 +4,6 @@ from PySide6.QtCore import Qt, QByteArray
 from PySide6.QtSvgWidgets import QGraphicsSvgItem
 from PySide6.QtSvg import QSvgRenderer
 
-
-
 svg_board = """
 <svg width="700" height="550" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
     <g style="display:inline" transform="matrix(.35 0 0 .35 0 0)">
@@ -89,6 +87,63 @@ svg_LEDB2 = """
 </svg>
 """
 
+svg_P1 = """
+<svg width="67.5" height="67.5" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <g transform="matrix(-.31495 0 0 .31495 312.22 -387.948)">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M405.965 1236.553a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025zm-13.984 36.36a3.89 3.89 0 0 1 3.48 2.151l12.489 24.98a4.808 4.808 0 0 1-4.298 6.958h-6.114v93.022a5.556 5.556 0 0 1-5.557 5.556 5.556 5.556 0 0 1-5.556-5.556v-93.022h-6.115a4.808 4.808 0 0 1-4.298-6.958l12.49-24.98a3.89 3.89 0 0 1 3.48-2.152zm13.984 158.651a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(-.31495 0 0 .31495 230.415 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(.31495 0 0 .31495 -89.703 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+    </g>
+</svg>
+"""
+svg_P2 = """
+<svg width="67.5" height="67.5" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <g transform="matrix(-.31495 0 0 .31495 239.007 -387.948)">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M405.965 1236.553a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025zm-13.984 36.36a3.89 3.89 0 0 1 3.48 2.151l12.489 24.98a4.808 4.808 0 0 1-4.298 6.958h-6.114v93.022a5.556 5.556 0 0 1-5.557 5.556 5.556 5.556 0 0 1-5.556-5.556v-93.022h-6.115a4.808 4.808 0 0 1-4.298-6.958l12.49-24.98a3.89 3.89 0 0 1 3.48-2.152zm13.984 158.651a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(-.31495 0 0 .31495 157.203 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(.31495 0 0 .31495 -162.074 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+    </g>
+</svg>
+"""
+svg_P3 = """
+<svg width="67.5" height="67.5" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <g style="display:inline">
+        <g transform="matrix(-.31495 0 0 .31495 157.203 -387.948)">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M405.965 1236.553a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025zm-13.984 36.36a3.89 3.89 0 0 1 3.48 2.151l12.489 24.98a4.808 4.808 0 0 1-4.298 6.958h-6.114v93.022a5.556 5.556 0 0 1-5.557 5.556 5.556 5.556 0 0 1-5.556-5.556v-93.022h-6.115a4.808 4.808 0 0 1-4.298-6.958l12.49-24.98a3.89 3.89 0 0 1 3.48-2.152zm13.984 158.651a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(-.31495 0 0 .31495 76.52 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+        <g transform="matrix(.31495 0 0 .31495 -243.599 -387.948)" style="display:inline">
+            <rect style="fill:#9a9a9a;fill-opacity:1;stroke:#000;stroke-width:9.52523;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" width="204.797" height="204.797" x="289.583" y="1236.553" ry="5.66"/>
+            <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;stroke-linecap:round;stroke-linejoin:round;enable-background:accumulate;stop-color:#000;stop-opacity:1" d="M426.164 1292.038a4.808 4.808 0 0 1 1.872.502l24.98 12.49a3.89 3.89 0 0 1 0 6.958l-24.98 12.49a4.808 4.808 0 0 1-6.958-4.304v-6.109h-60.786v70.672a5.556 5.556 0 0 1-5.557 5.557 5.556 5.556 0 0 1-5.556-5.557v-76.228a5.557 5.557 0 0 1 5.556-5.557h66.343v-6.114a4.808 4.808 0 0 1 5.086-4.8zm64.19 28.905a4.015 4.015 0 0 1 4.026 4.024v27.969a4.015 4.015 0 0 1-4.025 4.025h-1.737a4.015 4.015 0 0 1-4.024-4.025v-27.969a4.015 4.015 0 0 1 4.024-4.024zm-84.389 110.621a4.015 4.015 0 0 1 4.025 4.025v1.736a4.015 4.015 0 0 1-4.025 4.025h-27.968a4.015 4.015 0 0 1-4.025-4.025v-1.736a4.015 4.015 0 0 1 4.025-4.025z"/>
+        </g>
+    </g>
+</svg>
+"""
+
+
+
 
 class Projeto(QtWidgets.QWidget):
     def __init__(self, parent: QtWidgets.QWidget = None):
@@ -128,11 +183,34 @@ class Projeto(QtWidgets.QWidget):
         self.LEDB2Item = QGraphicsSvgItem()
         self.LEDB2Item.setSharedRenderer(self.LEDB2Renderer)
 
+
+
+        self.P1Renderer = QSvgRenderer(QByteArray(svg_P1.encode("utf-8")))
+        self.P1Item = QGraphicsSvgItem()
+        self.P1Item.setSharedRenderer(self.P1Renderer)
+        self.P1Item.setPos(236, 436)
+        self.P1Item.setFlags(QGraphicsSvgItem.ItemIsMovable | QGraphicsSvgItem.ItemIsSelectable | QGraphicsSvgItem.ItemIsFocusable)
+
+        self.P2Renderer = QSvgRenderer(QByteArray(svg_P2.encode("utf-8")))
+        self.P2Item = QGraphicsSvgItem()
+        self.P2Item.setSharedRenderer(self.P2Renderer)
+        self.P2Item.setPos(316, 436)
+        self.P2Item.setFlags(QGraphicsSvgItem.ItemIsMovable | QGraphicsSvgItem.ItemIsSelectable | QGraphicsSvgItem.ItemIsFocusable)
+
+        self.P3Renderer = QSvgRenderer(QByteArray(svg_P3.encode("utf-8")))
+        self.P3Item = QGraphicsSvgItem()
+        self.P3Item.setSharedRenderer(self.P3Renderer)
+        self.P3Item.setPos(396, 436)
+        self.P3Item.setFlags(QGraphicsSvgItem.ItemIsMovable | QGraphicsSvgItem.ItemIsSelectable | QGraphicsSvgItem.ItemIsFocusable)
+
         self.scene.addItem(self.boardItem)
         self.scene.addItem(self.LEDStartItem)
         self.scene.addItem(self.LEDEndItem)
         self.scene.addItem(self.LEDB1Item)
         self.scene.addItem(self.LEDB2Item)
+        self.scene.addItem(self.P1Item)
+        self.scene.addItem(self.P2Item)
+        self.scene.addItem(self.P3Item)
 
         self.Layout.addWidget(self.graphicView)
 

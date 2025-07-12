@@ -152,10 +152,10 @@ class LeftMenu(QtWidgets.QWidget):
         self.Layout.addItem(self.spacer2)
         self.Layout.addWidget(self.footerBar)
 
-    @Slot(QtGui.QMouseEvent)
-    def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
-        print(event.button())
-        # return super().mousePressEvent(event)
+    # @Slot(QtGui.QMouseEvent)
+    # def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
+    #     print(event.button())
+    #     # return super().mousePressEvent(event)
     
     @Slot(bool)
     def updateDevices(self, ignoreDialogs:bool = False):
